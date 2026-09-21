@@ -93,19 +93,29 @@ ul,ol{margin:0 0 1em;padding-left:1.25em}
 /* на средних экранах номер скрыт визуально, но остаётся доступным для скринридеров */
 @media (min-width:1080px) and (max-width:1250px){.header__phone span{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}}
 
-/* Hero */
-.hero{position:relative;overflow:hidden;background:radial-gradient(900px 420px at 88% -10%,color-mix(in srgb,var(--lime) 26%,transparent),transparent 60%),radial-gradient(800px 500px at -10% 0%,color-mix(in srgb,var(--blue) 18%,transparent),transparent 60%),linear-gradient(180deg,var(--hero-a),var(--hero-b));padding:28px 0 40px}
-.hero__grid{display:grid;gap:28px;align-items:center}
-.hero__eyebrow{display:inline-flex;align-items:center;gap:.5em;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:.35em .9em;font-weight:700;font-size:.9rem;color:var(--green);margin-bottom:14px}
-:root[data-theme="dark"] .hero__eyebrow{color:#8FE08F}
-.hero h1 .hl{color:var(--accent)}
-.hero__lead{font-size:1.15rem;color:var(--muted);max-width:40em;margin-bottom:20px}
-.hero__cta{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:22px}
+/* Первый экран (главная и внутренние страницы): фоновая картинка + тёмный градиент */
+.hero,.page-hero{position:relative;isolation:isolate;overflow:hidden;background:#071A48;color:#fff;display:flex;align-items:center}
+.hero__bg{position:absolute;inset:0;z-index:-2}
+.hero__bg img{position:absolute;right:0;top:0;width:100%;height:100%;object-fit:cover;object-position:center}
+.hero::after,.page-hero::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(7,26,72,.62) 0%,rgba(7,26,72,.84) 55%,rgba(7,26,72,.93) 100%)}
+.hero>.container,.page-hero>.container{position:relative}
+.hero{min-height:clamp(440px,72vh,660px);padding:36px 0 44px}
+.hero__text{max-width:660px}
+.hero__grid{display:block}
+.hero h1,.page-hero h1{color:#fff;text-wrap:balance}
+.hero h1 .hl{color:var(--lime)}
+.hero__eyebrow{display:inline-flex;align-items:center;gap:.5em;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.3);border-radius:999px;padding:.35em .9em;font-weight:700;font-size:.9rem;color:#fff;margin-bottom:14px}
+.hero__eyebrow .ico{color:var(--lime)}
+.hero__lead,.page-hero .lead{font-size:1.15rem;color:rgba(255,255,255,.9);max-width:40em;margin-bottom:20px}
+.hero__cta{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:8px}
 .hero__cta .btn{flex:1 1 220px}
+.on-dark .btn--ghost{color:#fff;border-color:rgba(255,255,255,.8)}
+.on-dark .btn--ghost:hover{background:rgba(255,255,255,.14)}
 @media (min-width:920px){
-  .hero{padding:52px 0 64px}
-  .hero__grid{grid-template-columns:1.15fr .85fr;gap:44px}
+  .hero{padding:56px 0 72px}
   .hero__cta .btn{flex:0 1 auto}
+  .hero__bg img{width:72%}
+  .hero::after,.page-hero::after{background:linear-gradient(90deg,#071A48 0%,#071A48 27%,rgba(7,26,72,.88) 42%,rgba(7,26,72,.38) 68%,rgba(7,26,72,.1) 100%),linear-gradient(0deg,#071A48 0,transparent 20%)}
 }
 
 /* Выпадающее меню «Услуги» */

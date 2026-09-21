@@ -17,8 +17,9 @@ const PRICE_ASK = (what) => `<div class="price-card">${icon('max')}<div><b>Ст�
 function svcPage(C, d) {
   const crumbItems = [{ name: 'Главная', href: '/' }, ...(d.parent ? [d.parent] : []), { name: d.crumb, href: d.path }];
   const body = `
-${L.crumbs(crumbItems)}
-<section class="page-hero"><div class="container">
+<section class="page-hero on-dark">
+${L.heroBg(d.path)}<div class="container">
+  ${L.crumbs(crumbItems, true)}
   <h1>${d.h1}</h1>
   <p class="lead">${d.lead}</p>
   ${d.chip ? `<div class="price-chip">${icon('ruble')} ${d.chip}</div>` : ''}

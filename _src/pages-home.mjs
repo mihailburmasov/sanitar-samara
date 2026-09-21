@@ -3,7 +3,6 @@ import { SERVICES, PESTS, CLIENTS, VIDEOS, VIDEO_CATS, REVIEWS, STEPS, METHODS, 
 import * as L from './layout.mjs';
 
 export function home(C) {
-  const hero = VIDEOS[0];
   const rating = `${C.rating.value}`;
   const services = SERVICES.map((s) => `<article class="card svc reveal">
       <span class="svc__ico">${icon(s.icon)}</span>
@@ -24,10 +23,11 @@ export function home(C) {
   const p = C.phones;
 
   const body = `
-<section class="hero">
+<section class="hero on-dark">
+  ${L.heroBg('/')}
   <div class="container">
   <div class="hero__grid">
-    <div>
+    <div class="hero__text">
       <span class="hero__eyebrow">${icon('shield-check')} Самара и Самарская область</span>
       <h1>Уничтожение <span class="hl">насекомых и грызунов</span> в Самаре и области</h1>
       <p class="hero__lead">Дезинсекция, дератизация, дезинфекция и фунгицидная обработка. Гарантия до 6 месяцев. Профессиональные препараты, безопасность для детей и животных при соблюдении правил.</p>
@@ -35,12 +35,6 @@ export function home(C) {
         <button type="button" class="btn btn--lime" data-open-modal>${icon('phone')} Вызвать специалиста</button>
         <a class="btn btn--ghost" href="#ceny">${icon('calc')} Рассчитать стоимость</a>
       </div>
-      ${L.leadForm({ variant: 'mini', cta: 'Перезвоните мне' })}
-    </div>
-    <div class="hero__media">
-      ${L.vidTile(hero, { hero: true })}
-      <span class="badge badge--a">${icon('shield-check')}<span>Гарантия<small>до 6 месяцев</small></span></span>
-      <span class="badge badge--b">${icon('star')}<span>${rating} на Яндексе<small>${C.rating.count} отзывов</small></span></span>
     </div>
   </div>
   <ul class="facts">
@@ -146,7 +140,6 @@ ${L.formSection({ title: 'Оставьте заявку — перезвоним
     path: '/',
     title: 'Дезинсекция и дератизация в Самаре | ДЕЗЦЕНТР SANITAR',
     description: 'Уничтожение тараканов, клопов, клещей, крыс и мышей в Самаре и области. Квартира от @@PRICE_FROM@@ ₽, участок от @@PRICE_LAND@@ ₽/сотка. Гарантия до 6 месяцев.',
-    preload: `<link rel="preload" as="image" href="/video/work-${hero.id}.webp" fetchpriority="high">`,
     body,
     ld: [L.ldLocalBusiness(), L.ldFaq(FAQ_HOME)]
   };

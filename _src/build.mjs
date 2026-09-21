@@ -43,7 +43,11 @@ const warnings = [];
 const written = [];
 for (const p of pages) {
   let html = L.page(p);
-  if (BASE) html = html.replace(/(\s(?:href|src|action|data-video|data-lightbox)=")\/(?!\/)/g, `$1${BASE}/`);
+  if (BASE) {
+    html = html.replace(/(\s(?:href|src|action|data-video|data-lightbox)=")\/(?!\/)/g, `$1${BASE}/`);
+    // srcset и imagesrcset содержат несколько путей через запятую
+    html = html.replace(/(\s(?:srcset|imagesrcset)=")([^"]*)"/g, (m, a, v) => `${a}${v.replace(/(^|,\s*)\/(?!\/)/g, `$1${BASE}/`)}"`);
+  }
   const file = p.path === '/' ? 'index.html' : p.path.endsWith('.html') ? p.path.slice(1) : path.join(p.path.slice(1), 'index.html');
   const full = path.join(OUT, file);
   fs.mkdirSync(path.dirname(full), { recursive: true });

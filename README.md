@@ -80,6 +80,7 @@ node _src/build.mjs
 
 - Видео: `video/work-NN.mp4` + постер `video/work-NN.webp`. Список и подписи — `VIDEOS` в `_src/data.mjs`. Ролики сжаты до 1–3 МБ, без звука. Скрипты сжатия — `_src/tools/media.js` (нужны `npm i sharp ffmpeg-static`).
 - Документы: `images/docs/*.webp`, список — `DOCS` в `_src/data.mjs`.
+- Фоновые картинки первого экрана: `images/hero/*.webp` (обычная и `-m` для телефонов). Их делает `_src/tools/make-art.cjs` из обложек клиента (вырезки без текста), привязка страниц к картинкам — `_src/hero-art.mjs`.
 - После правки данных запустите `node _src/build.mjs`.
 
 ## 7. Перед запуском

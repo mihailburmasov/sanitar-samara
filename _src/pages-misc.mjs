@@ -2,8 +2,7 @@ import { icon } from './icons.mjs';
 import { PRICE, REVIEWS, DOCS, SERVICES } from './data.mjs';
 import * as L from './layout.mjs';
 
-const hero = (title, lead, crumbItems) => `${L.crumbs(crumbItems)}
-<section class="page-hero"><div class="container"><h1>${title}</h1>${lead ? `<p class="lead">${lead}</p>` : ''}</div></section>`;
+const hero = (title, lead, crumbItems) => `<section class="page-hero on-dark">${L.heroBg(crumbItems[crumbItems.length - 1].href)}<div class="container">${L.crumbs(crumbItems, true)}<h1>${title}</h1>${lead ? `<p class="lead">${lead}</p>` : ''}</div></section>`;
 const crumb = (name, href) => [{ name: 'Главная', href: '/' }, { name, href }];
 
 export function ceny(C) {
@@ -121,14 +120,14 @@ export function politika(C) {
 }
 
 export function notFound(C) {
-  const body = `<section class="section"><div class="container err-page">
-  <b>404</b><h1>Страница не найдена</h1>
-  <p style="color:var(--muted)">Возможно, адрес изменился или введён с ошибкой. Перейдите на главную или выберите услугу.</p>
-  <div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:20px 0">
+  const body = `<section class="page-hero on-dark">${L.heroBg('/404.html')}<div class="container">
+  <b class="err-code">404</b><h1>Страница не найдена</h1>
+  <p class="lead">Возможно, адрес изменился или введён с ошибкой. Перейдите на главную или выберите услугу.</p>
+  <div class="page-hero__cta">
     <a class="btn btn--lime" href="/">На главную</a>
     ${SERVICES.map((s) => `<a class="btn btn--ghost" href="/${s.slug}/">${s.name}</a>`).join('')}
   </div>
-  <p>Или позвоните: ${L.phoneLink(C.phones[0], '', L.esc(C.phones[0].display))}</p>
+  <p style="margin:18px 0 0">Или позвоните: ${L.phoneLink(C.phones[0], '', L.esc(C.phones[0].display))}</p>
 </div></section>`;
   return { path: '/404.html', title: 'Страница не найдена | ДЕЗЦЕНТР SANITAR', description: 'Страница не найдена. Перейдите на главную страницу или выберите услугу.', body, noindex: true, ld: [] };
 }

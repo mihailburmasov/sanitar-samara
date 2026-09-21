@@ -1,4 +1,5 @@
 import { sprite, icon } from './icons.mjs';
+import { heroBg as heroBgHtml, heroPreload } from './hero-art.mjs';
 import { NAV, SERVICES, PESTS, PRICE, VIDEOS, VIDEO_CATS, REVIEWS, STEPS, METHODS, DOCS } from './data.mjs';
 
 let C = null;
@@ -30,7 +31,7 @@ export function logoMark() {
   return `<svg viewBox="0 0 48 48" aria-hidden="true" focusable="false"><path d="M40 12A19 19 0 1 0 43 27" fill="none" stroke="#1F4FBF" stroke-width="5" stroke-linecap="round"/><path d="M14 33C14 20 22 13 36 12c0 13-7 21-19 21z" fill="#2E9B2E"/><path d="M15 32 28 19" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/></svg>`;
 }
 export function logo(cls = '') {
-  return `<a class="logo ${cls}" href="/" aria-label="${esc(C.brand)} — на главную">${logoMark()}<span class="logo__t"><small>ДЕЗЦЕНТР</small><b>SANITAR</b></span></a>`;
+  return `<a class="logo ${cls}" href="/" title="На главную">${logoMark()}<span class="logo__t"><small>ДЕЗЦЕНТР</small> <b>SANITAR</b></span></a>`;
 }
 
 /* ---------- Шапка ---------- */
@@ -227,8 +228,10 @@ export function faqBlock(items) {
   return `<div class="faq">${items.map((f) => `<details><summary>${esc(f.q)}</summary><div class="ans">${f.a}</div></details>`).join('')}</div>`;
 }
 
-export function crumbs(items) {
-  return `<nav class="crumbs" aria-label="Хлебные крошки"><div class="container"><ol>${items.map((c, i) => (i === items.length - 1 ? `<li aria-current="page">${esc(c.name)}</li>` : `<li><a href="${c.href}">${esc(c.name)}</a></li>`)).join('')}</ol></div></nav>`;
+export const heroBg = heroBgHtml;
+export function crumbs(items, inner = false) {
+  const ol = `<ol>${items.map((c, i) => (i === items.length - 1 ? `<li aria-current="page">${esc(c.name)}</li>` : `<li><a href="${c.href}">${esc(c.name)}</a></li>`)).join('')}</ol>`;
+  return `<nav class="crumbs" aria-label="Хлебные крошки">${inner ? ol : `<div class="container">${ol}</div>`}</nav>`;
 }
 
 export function priceTable() {
@@ -303,7 +306,7 @@ ${noindex || C.noindex ? '<meta name="robots" content="noindex,follow">' : ''}
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="preload" href="/fonts/golos-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
-${preload}
+${preload || heroPreload(path)}
 <script>(function(){try{var t=localStorage.getItem('theme');if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t)}catch(e){}document.documentElement.className+=' js'})()</script>
 <style>${CRITICAL}</style>
 <link rel="stylesheet" href="/styles.css" media="print" onload="this.media='all'">
