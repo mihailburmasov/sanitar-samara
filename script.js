@@ -29,11 +29,10 @@
   var root = document.documentElement;
   $$('[data-theme-toggle]').forEach(function (b) {
     b.addEventListener('click', function () {
-      var dark = root.getAttribute('data-theme') === 'dark' ||
-        (!root.getAttribute('data-theme') && window.matchMedia('(prefers-color-scheme: dark)').matches);
-      var next = dark ? 'light' : 'dark';
+      /* по умолчанию всегда светлая тема; тёмная — только по нажатию на кнопку */
+      var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
       root.setAttribute('data-theme', next);
-      store.set('theme', next);
+      store.set('theme-v2', next);
     });
   });
 
