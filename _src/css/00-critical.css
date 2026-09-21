@@ -118,6 +118,15 @@ ul,ol{margin:0 0 1em;padding-left:1.25em}
   .hero::after,.page-hero::after{background:linear-gradient(90deg,#071A48 0%,#071A48 27%,rgba(7,26,72,.88) 42%,rgba(7,26,72,.38) 68%,rgba(7,26,72,.1) 100%),linear-gradient(0deg,#071A48 0,transparent 20%)}
 }
 
+/* Главная: фон на весь экран — картинка на всю ширину, первый экран высотой во весь экран */
+.hero--home{min-height:calc(100vh - var(--header-h));min-height:calc(100svh - var(--header-h));padding:48px 0 40px}
+@media (max-width:767px){.hero--home{min-height:calc(100svh - var(--header-h) - 70px)}}
+@media (min-width:920px){
+  .hero--home{padding:64px 0 56px}
+  .hero--home .hero__bg img{width:100%}
+  .hero--home::after{background:linear-gradient(90deg,rgba(7,26,72,.94) 0%,rgba(7,26,72,.84) 30%,rgba(7,26,72,.4) 60%,rgba(7,26,72,.1) 100%),linear-gradient(0deg,rgba(7,26,72,.8) 0,transparent 28%)}
+}
+
 /* Выпадающее меню «Услуги» */
 .nav__group{position:relative}
 .nav__btn{display:inline-flex;align-items:center;gap:6px;background:none;border:0;font:inherit;font-weight:650;color:var(--text);padding:.5em .7em;border-radius:10px;cursor:pointer}

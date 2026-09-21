@@ -24,19 +24,20 @@ export const HERO_ART = {
   '/404.html': ['fog-fence', 'center']
 };
 
-const SIZES = '(min-width:920px) 72vw, 100vw';
+// На главной фон занимает всю ширину экрана, на внутренних — правые 72%
+const sizesFor = (path) => (path === '/' ? '100vw' : '(min-width:920px) 72vw, 100vw');
 const art = (path) => {
   const [name, pos] = HERO_ART[path] || HERO_ART['/'];
   const d = heroDims[name];
-  return { name, pos, d, src: `/images/hero/${name}.webp`, srcM: `/images/hero/${name}-m.webp` };
+  return { name, pos, d, src: `/images/hero/${name}.webp`, srcM: `/images/hero/${name}-m.webp`, mw: d.mw || 800, sizes: sizesFor(path) };
 };
 
 export function heroBg(path) {
   const a = art(path);
-  return `<div class="hero__bg" aria-hidden="true"><img src="${a.src}" srcset="${a.srcM} 800w, ${a.src} ${a.d.w}w" sizes="${SIZES}" width="${a.d.w}" height="${a.d.h}" alt="" fetchpriority="high" decoding="async" style="object-position:${a.pos}"></div>`;
+  return `<div class="hero__bg" aria-hidden="true"><img src="${a.src}" srcset="${a.srcM} ${a.mw}w, ${a.src} ${a.d.w}w" sizes="${a.sizes}" width="${a.d.w}" height="${a.d.h}" alt="" fetchpriority="high" decoding="async" style="object-position:${a.pos}"></div>`;
 }
 
 export function heroPreload(path) {
   const a = art(path);
-  return `<link rel="preload" as="image" href="${a.src}" imagesrcset="${a.srcM} 800w, ${a.src} ${a.d.w}w" imagesizes="${SIZES}" fetchpriority="high">`;
+  return `<link rel="preload" as="image" href="${a.src}" imagesrcset="${a.srcM} ${a.mw}w, ${a.src} ${a.d.w}w" imagesizes="${a.sizes}" fetchpriority="high">`;
 }

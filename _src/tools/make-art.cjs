@@ -32,7 +32,8 @@ const VID = {
 
 // name: источник + режим.  cover: [файл, left, top, width, height]
 const ART = {
-  'worker-house': { cover: ['C', 0, 420, 690, 370], mode: 'cover' },
+  // главная: фон во весь экран (16:9, крупнее остальных)
+  'worker-house': { cover: ['C', 0, 420, 690, 370], mode: 'cover', size: [1920, 1080], mw: 800 },
   'room-fog': { cover: ['G', 0, 640, 700, 225], mode: 'strip' },
   'tree-spray': { cover: ['A', 520, 640, 504, 165], mode: 'strip' },
   rats: { cover: ['K', 240, 805, 700, 160], mode: 'strip' },
@@ -68,7 +69,8 @@ async function build(name, spec) {
   if (spec.flip) base = await sharp(base).flop().toBuffer(); // отражение: объект справа, слева место под текст
   let img;
   if (spec.mode === 'cover') {
-    img = await sharp(base).resize(W, H, { fit: 'cover', kernel: 'lanczos3' }).sharpen({ sigma: 0.7 }).png().toBuffer();
+    const [cw, ch] = spec.size || [W, H];
+    img = await sharp(base).resize(cw, ch, { fit: 'cover', kernel: 'lanczos3' }).sharpen({ sigma: 0.8 }).png().toBuffer();
   } else if (spec.mode === 'strip') {
     const m = await sharp(base).metadata();
     const sh = Math.round(W * m.height / m.width);
@@ -90,7 +92,7 @@ async function build(name, spec) {
     img = await sharp(back).composite([{ input: panel, left, top }, { input: border, left, top }]).png().toBuffer();
   }
   await sharp(img).webp({ quality: 78 }).toFile(path.join(OUT, `${name}.webp`));
-  await sharp(img).resize({ width: 800 }).webp({ quality: 66 }).toFile(path.join(OUT, `${name}-m.webp`));
+  await sharp(img).resize({ width: spec.mw || 800 }).webp({ quality: 68 }).toFile(path.join(OUT, `${name}-m.webp`));
 }
 
 (async () => {
@@ -99,7 +101,7 @@ async function build(name, spec) {
   for (const name of Object.keys(ART)) {
     const f = path.join(OUT, `${name}.webp`);
     const m = await sharp(f).metadata();
-    dims[name] = { w: m.width, h: m.height, kb: Math.round(fs.statSync(f).size / 1024), kbm: Math.round(fs.statSync(path.join(OUT, `${name}-m.webp`)).size / 1024) };
+    dims[name] = { w: m.width, h: m.height, mw: ART[name].mw || 800, kb: Math.round(fs.statSync(f).size / 1024), kbm: Math.round(fs.statSync(path.join(OUT, `${name}-m.webp`)).size / 1024) };
   }
   fs.writeFileSync(path.join(ROOT, '_src', 'hero.json'), JSON.stringify(dims, null, 1));
   console.log(Object.entries(dims).map(([n, d]) => `${n}: ${d.kb} КБ / ${d.kbm} КБ`).join('\n'));

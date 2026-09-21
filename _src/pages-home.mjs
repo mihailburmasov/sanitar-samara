@@ -23,7 +23,7 @@ export function home(C) {
   const p = C.phones;
 
   const body = `
-<section class="hero on-dark">
+<section class="hero hero--home on-dark">
   ${L.heroBg('/')}
   <div class="container">
   <div class="hero__grid">
