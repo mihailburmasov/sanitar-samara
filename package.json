@@ -1,0 +1,8 @@
+{
+  "name": "sanitar-site",
+  "private": true,
+  "description": "Статический сайт ДЕЗЦЕНТР SANITAR. Сборка: npm run build",
+  "scripts": {
+    "build": "node _src/build.mjs"
+  }
+}

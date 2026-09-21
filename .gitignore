@@ -1,0 +1,7 @@
+node_modules/
+api/config.php
+dist-pages/
+# внутренние заметки для работы с клиентом, в публичный репозиторий не попадают
+ВОПРОСЫ_КЛИЕНТУ.md
+.DS_Store
+Thumbs.db

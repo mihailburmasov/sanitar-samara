@@ -1,0 +1,33 @@
+{
+  "_comment": "ЕДИНЫЙ ИСТОЧНИК ФАКТОВ О КОМПАНИИ. Меняйте значения здесь и запускайте: node _src/build.mjs. Пустое значение = на сайте будет виден жёлтый плейсхолдер {{...}}.",
+  "brand": "ДЕЗЦЕНТР SANITAR",
+  "brandShort": "SANITAR",
+  "slug": "sanitar-samara",
+  "city": "Самара",
+  "region": "Самарская область",
+  "domain": "",
+  "phones": [
+    { "display": "8 927 260-73-67", "tel": "+79272607367" },
+    { "display": "8 917 107-93-84", "tel": "+79171079384" }
+  ],
+  "telegram": "https://t.me/obrabotkanasekomye",
+  "max": "https://max.ru/join/VizEzPhCOBhcnVbOm-s2utUMwQV6fIl8NmV13puQeJ4",
+  "yandexReviewsUrl": "",
+  "email": "",
+  "address": "",
+  "hours": "",
+  "legal": {
+    "name": "",
+    "inn": "",
+    "ogrn": ""
+  },
+  "experience": "Вместе 15 лет",
+  "rating": { "value": "5,0", "count": 100, "asOf": "март 2026" },
+  "cities": [
+    "Самара", "Тольятти", "Сызрань", "Новокуйбышевск", "Чапаевск",
+    "Кинель", "Отрадный", "Жигулёвск", "Похвистнево", "Безенчук"
+  ],
+  "metrikaId": "",
+  "formEndpoint": "/api/send.php",
+  "ogImage": "/images/og.jpg"
+}

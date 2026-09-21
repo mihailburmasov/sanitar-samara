@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://{{ДОМЕН}}/</loc><lastmod>2026-09-21</lastmod><priority>1.0</priority></url>
+  <url><loc>https://{{ДОМЕН}}/dezinsekciya/</loc><lastmod>2026-09-21</lastmod><priority>0.8</priority></url>
+  <url><loc>https://{{ДОМЕН}}/deratizaciya/</loc><lastmod>2026-09-21</lastmod><priority>0.8</priority></url>
+  <url><loc>https://{{ДОМЕН}}/dezinfekciya/</loc><lastmod>2026-09-21</lastmod><priority>0.8</priority></url>
+  <url><loc>https://{{ДОМЕН}}/fungicidnaya-obrabotka/</loc><lastmod>2026-09-21</lastmod><priority>0.8</priority></url>
+  <url><loc>https://{{ДОМЕН}}/unichtozhenie-tarakanov/</loc><lastmod>2026-09-21</lastmod><priority>0.8</priority></url>
+  <url><loc>https://{{ДОМЕН}}/unichtozhenie-klopov/</loc><lastmod>2026-09-21</lastmod><priority>0.8</priority></url>
+  <url><loc>https://{{ДОМЕН}}/unichtozhenie-krys-i-myshey/</loc><lastmod>2026-09-21</lastmod><priority>0.8</priority></url>
+  <url><loc>https://{{ДОМЕН}}/obrabotka-ot-kleshchey/</loc><lastmod>2026-09-21</lastmod><priority>0.8</priority></url>
+  <url><loc>https://{{ДОМЕН}}/obrabotka-ot-pleseni/</loc><lastmod>2026-09-21</lastmod><priority>0.8</priority></url>
+  <url><loc>https://{{ДОМЕН}}/ceny/</loc><lastmod>2026-09-21</lastmod><priority>0.8</priority></url>
+  <url><loc>https://{{ДОМЕН}}/dokumenty/</loc><lastmod>2026-09-21</lastmod><priority>0.8</priority></url>
+  <url><loc>https://{{ДОМЕН}}/otzyvy/</loc><lastmod>2026-09-21</lastmod><priority>0.8</priority></url>
+  <url><loc>https://{{ДОМЕН}}/kontakty/</loc><lastmod>2026-09-21</lastmod><priority>0.8</priority></url>
+  <url><loc>https://{{ДОМЕН}}/politika-konfidencialnosti/</loc><lastmod>2026-09-21</lastmod><priority>0.8</priority></url>
+</urlset>

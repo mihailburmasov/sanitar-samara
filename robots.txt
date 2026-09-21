@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /_src/
+
+Sitemap: https://{{ДОМЕН}}/sitemap.xml
