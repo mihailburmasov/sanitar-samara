@@ -85,22 +85,54 @@
     }
   });
 
-  /* ---- Видео по клику (без автозвука: ролики беззвучные) ---- */
-  document.addEventListener('click', function (e) {
-    var btn = e.target.closest && e.target.closest('button.vid[data-video]');
-    if (!btn) return;
-    $$('video').forEach(function (v) { v.pause(); });
-    var wrap = document.createElement('div');
-    wrap.className = btn.className; wrap.style.cursor = 'default'; wrap.setAttribute('data-cat', btn.getAttribute('data-cat') || '');
-    var poster = $('img', btn);
-    var v = document.createElement('video');
-    v.src = btn.getAttribute('data-video'); v.controls = true; v.muted = true; v.loop = true; v.playsInline = true; v.autoplay = true;
-    v.setAttribute('playsinline', ''); v.setAttribute('aria-label', btn.getAttribute('aria-label') || 'Видео');
-    if (poster) v.poster = poster.src;
-    wrap.appendChild(v); btn.replaceWith(wrap);
-    var p = v.play(); if (p && p.catch) p.catch(function () { /* пользователь запустит вручную */ });
-    v.focus();
-  });
+  /* ---- Видео: крупный просмотр поверх страницы, стрелки ← → и свайп (ролики беззвучные) ---- */
+  var vmodal = $('#video-modal');
+  if (vmodal) {
+    var vEl = $('video', vmodal), vCap = $('.vmodal__cap', vmodal), vCount = $('.vmodal__count', vmodal);
+    var vPrev = $('.vnav--prev', vmodal), vNext = $('.vnav--next', vmodal);
+    var vList = [], vIdx = 0;
+    var vTiles = function () { return $$('.gallery button.vid[data-video]').filter(function (t) { return !t.hidden; }); }; /* с учётом фильтра */
+    var vShow = function (i) {
+      vIdx = (i + vList.length) % vList.length; /* по кругу */
+      var t = vList[vIdx], img = $('img', t), cap = $('.vid__cap', t);
+      vEl.pause();
+      vEl.poster = img ? img.src : '';
+      vEl.src = t.getAttribute('data-video');
+      vEl.setAttribute('aria-label', cap ? cap.textContent : 'Видео');
+      vCap.textContent = cap ? cap.textContent : '';
+      vCount.textContent = (vIdx + 1) + ' / ' + vList.length;
+      vPrev.hidden = vNext.hidden = vList.length < 2;
+      var p = vEl.play(); if (p && p.catch) p.catch(function () { /* пользователь запустит вручную */ });
+    };
+    document.addEventListener('click', function (e) {
+      var tile = e.target.closest && e.target.closest('button.vid[data-video]');
+      if (!tile) return;
+      vList = vTiles();
+      if (!vList.length) return;
+      openDialog(vmodal);
+      vShow(vList.indexOf(tile));
+      goal('video_open');
+    });
+    vPrev.addEventListener('click', function () { vShow(vIdx - 1); });
+    vNext.addEventListener('click', function () { vShow(vIdx + 1); });
+    /* стрелки клавиатуры: перехватываем раньше плеера, чтобы они листали ролики, а не перематывали */
+    vmodal.addEventListener('keydown', function (e) {
+      if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+      e.preventDefault(); e.stopPropagation();
+      vShow(vIdx + (e.key === 'ArrowRight' ? 1 : -1));
+    }, true);
+    /* свайп на телефоне */
+    var sx = null;
+    var stage = $('.vmodal__stage', vmodal);
+    stage.addEventListener('touchstart', function (e) { sx = e.changedTouches[0].clientX; }, { passive: true });
+    stage.addEventListener('touchend', function (e) {
+      if (sx === null) return;
+      var dx = e.changedTouches[0].clientX - sx; sx = null;
+      if (Math.abs(dx) > 60) vShow(vIdx + (dx < 0 ? 1 : -1));
+    }, { passive: true });
+    /* при любом закрытии (крестик, Esc, клик по подложке) останавливаем видео и прекращаем загрузку */
+    vmodal.addEventListener('close', function () { vEl.pause(); vEl.removeAttribute('src'); vEl.load(); });
+  }
 
   /* ---- Фильтр видео ---- */
   $$('[data-filter]').forEach(function (chip) {
@@ -220,7 +252,7 @@
         })
         .catch(function () {
           clearTimeout(timer); busy(false);
-          show('err', 'Не удалось отправить заявку. Позвоните нам: <a href="tel:' + (CFG.telHref || '') + '">' + (CFG.tel || '') + '</a> или напишите в <a href="' + (CFG.maxUrl || '#') + '" target="_blank" rel="noopener">MAX</a>.');
+          show('err', 'Не удалось отправить заявку. Позвоните нам: <a href="tel:' + (CFG.telHref || '') + '">' + (CFG.tel || '') + '</a> или отправьте заявку ещё раз чуть позже.');
         });
     });
   }
