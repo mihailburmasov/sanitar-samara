@@ -1,26 +1,27 @@
-// Фоновые картинки первого экрана: по одной на страницу. Файлы делает _src/tools/make-art.cjs из обложек клиента.
+// Фоновые картинки первого экрана: на каждой странице своя. Файлы делает _src/tools/make-art.cjs
+// из материалов клиента (обложки, кадры из видео работ, реальные фото).
 import fs from 'node:fs';
 
 export const heroDims = JSON.parse(fs.readFileSync(new URL('./hero.json', import.meta.url), 'utf8'));
 
-// путь страницы → [картинка, object-position]
+// путь страницы → [картинка, object-position]. Позиция важна на телефоне, где виден узкий участок кадра.
 export const HERO_ART = {
   '/': ['worker-house', 'center'],
-  '/dezinsekciya/': ['worker-house', '60% center'],
-  '/unichtozhenie-tarakanov/': ['worker-house', 'center'],
-  '/unichtozhenie-klopov/': ['worker-house', '40% center'],
-  '/dezinfekciya/': ['room-fog', 'center'],
-  '/obrabotka-ot-pleseni/': ['room-fog', '70% center'],
-  '/dokumenty/': ['room-fog', '30% center'],
-  '/fungicidnaya-obrabotka/': ['tree-spray', 'center'],
-  '/obrabotka-ot-kleshchey/': ['tree-spray', '70% center'],
-  '/politika-konfidencialnosti/': ['tree-spray', '30% center'],
+  '/dezinsekciya/': ['interior-house', '68% center'],
   '/deratizaciya/': ['rats', 'center'],
-  '/unichtozhenie-krys-i-myshey/': ['rats', '60% center'],
-  '/ceny/': ['family-pets', 'center 40%'],
-  '/otzyvy/': ['family-pets', 'center 55%'],
-  '/kontakty/': ['family-pets', 'center 30%'],
-  '/404.html': ['family-pets', 'center 45%']
+  '/dezinfekciya/': ['room-fog', 'center'],
+  '/fungicidnaya-obrabotka/': ['tree-spray', 'center'],
+  '/unichtozhenie-tarakanov/': ['office-kitchen', '65% center'],
+  '/unichtozhenie-klopov/': ['bedroom', '62% center'],
+  '/unichtozhenie-krys-i-myshey/': ['rats-close', '75% center'],
+  '/obrabotka-ot-kleshchey/': ['garden-dusk', '80% center'],
+  '/obrabotka-ot-pleseni/': ['green-wall', '75% center'],
+  '/ceny/': ['yard-shed', '75% center'],
+  '/dokumenty/': ['fog-lawn', 'center'],
+  '/otzyvy/': ['family-pets', 'center 45%'],
+  '/kontakty/': ['city-window', '85% center'],
+  '/politika-konfidencialnosti/': ['autumn-road', '58% center'],
+  '/404.html': ['fog-fence', 'center']
 };
 
 const SIZES = '(min-width:920px) 72vw, 100vw';

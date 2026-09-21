@@ -78,9 +78,10 @@ export function footer() {
       <div>
         ${logo('logo--footer')}
         <p style="margin-top:14px">Санитарная обработка в Самаре и Самарской области: дезинсекция, дератизация, дезинфекция, фунгицидная обработка.</p>
+        <p class="footer__soc">Наши группы с полезными материалами:</p>
         <div class="social">
-          <a href="${esc(C.telegram)}" target="_blank" rel="noopener" data-goal="telegram_click">${icon('telegram')} Telegram</a>
-          <a href="${esc(C.max)}" target="_blank" rel="noopener" data-goal="max_click">${icon('max')} MAX</a>
+          <a href="${esc(C.telegram)}" target="_blank" rel="noopener" data-goal="telegram_click">${icon('telegram')} Telegram-канал</a>
+          <a href="${esc(C.max)}" target="_blank" rel="noopener" data-goal="max_click">${icon('max')} Группа в MAX</a>
         </div>
       </div>
       <div><p class="footer__h">Услуги</p><ul>${svc}</ul></div>
@@ -110,7 +111,6 @@ export function bottomBar() {
   const p = phone1();
   return `<div class="bar" role="navigation" aria-label="Быстрая связь">
   <a class="btn btn--lime" href="tel:${p.tel}" data-goal="phone_click">${icon('phone')} Позвонить</a>
-  <a class="btn btn--blue" href="${esc(C.telegram)}" target="_blank" rel="noopener" data-goal="telegram_click">${icon('telegram')} Telegram</a>
   <button type="button" class="btn btn--ghost" data-open-modal>${icon('clipboard')} Заявка</button>
 </div>`;
 }
@@ -182,7 +182,7 @@ export function leadForm({ variant = 'full', service = '', cta = 'Отправи
 }
 
 /* Блок «Заявка» — форма + контакты */
-export function formSection({ title = 'Оставьте заявку', lead = 'Перезвоним, уточним детали и рассчитаем стоимость. Или напишите в MAX — пришлём расчёт за 5 минут.', service = '', alt = false } = {}) {
+export function formSection({ title = 'Оставьте заявку', lead = 'Укажите, что нужно обработать: перезвоним, уточним детали и рассчитаем стоимость.', service = '', alt = false } = {}) {
   const p = C.phones;
   return `<section class="section${alt ? ' section--alt' : ''}" id="zayavka"><div class="container">
   <div class="section__head"><span class="eyebrow">Заявка</span><h2>${title}</h2><p>${lead}</p></div>
@@ -191,8 +191,6 @@ export function formSection({ title = 'Оставьте заявку', lead = '�
     <div class="contact-card">
       ${phoneLink(p[0], '', `${icon('phone')}<span>${esc(p[0].display)}<small>Позвонить</small></span>`)}
       ${phoneLink(p[1], '', `${icon('phone')}<span>${esc(p[1].display)}<small>Позвонить</small></span>`)}
-      <a href="${esc(C.max)}" target="_blank" rel="noopener" data-goal="max_click">${icon('max')}<span>Написать в MAX<small>Расчёт за 5 минут</small></span></a>
-      <a href="${esc(C.telegram)}" target="_blank" rel="noopener" data-goal="telegram_click">${icon('telegram')}<span>Telegram-канал<small>Новости и акции</small></span></a>
     </div>
   </div></div></section>`;
 }
@@ -279,7 +277,7 @@ export function page({ path, title, description, body, ld = [], preload = '', no
   const canonical = url(path === '/404.html' ? '/' : path);
   const img = `${site()}${ogImage || C.ogImage}`;
   const lds = ld.map((o) => `<script type="application/ld+json">${JSON.stringify(o)}</script>`).join('\n');
-  const cfg = JSON.stringify({ ym: C.metrikaId || '', endpoint: C.formEndpoint, maxUrl: C.max, tel: C.phones[0].display, telHref: C.phones[0].tel });
+  const cfg = JSON.stringify({ ym: C.metrikaId || '', endpoint: C.formEndpoint, tel: C.phones[0].display, telHref: C.phones[0].tel });
   const html = `<!doctype html>
 <html lang="ru">
 <head>

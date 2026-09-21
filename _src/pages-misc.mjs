@@ -7,7 +7,7 @@ const crumb = (name, href) => [{ name: 'Главная', href: '/' }, { name, hr
 
 export function ceny(C) {
   const items = crumb('Цены', '/ceny/');
-  const body = `${hero('Цены на дезинсекцию, дератизацию и дезинфекцию в Самаре', 'Прозрачные цены на обработку квартир и участков. Для остальных объектов рассчитываем стоимость за 5 минут.', items)}
+  const body = `${hero('Цены на дезинсекцию, дератизацию и дезинфекцию в Самаре', 'Прозрачные цены на обработку квартир и участков. Для остальных объектов рассчитываем стоимость по заявке.', items)}
 <section class="section"><div class="container">
   <div class="section__head"><span class="eyebrow">Квартиры</span><h2>Дезинсекция квартир</h2><p>Тараканы, клопы, муравьи, блохи, комары. Цена за квартиру зависит от количества квартир в заказе.</p></div>
   ${L.priceTable()}
@@ -16,16 +16,16 @@ export function ceny(C) {
 <section class="section section--alt"><div class="container">
   <div class="section__head"><span class="eyebrow">Участки</span><h2>Обработка участков и дач</h2></div>
   <div class="price-extra"><div class="price-card">${icon('sprout')}<div><b>от ${PRICE.land} ₽ за сотку</b><span>Комплексная обработка: клещи, комары, садовые вредители. Минимальный выезд. Дополнительно: муравьи, мухи, осы.</span></div></div>
-  <div class="price-card">${icon('leaf')}<div><b>Лечение деревьев и кустарников</b><span>Стоимость — по запросу, расчёт за 5 минут.</span></div></div></div>
+  <div class="price-card">${icon('leaf')}<div><b>Лечение деревьев и кустарников</b><span>Стоимость — по запросу, рассчитаем по заявке.</span></div></div></div>
 </div></section>
 <section class="section"><div class="container">
-  <div class="section__head"><span class="eyebrow">Индивидуальный расчёт</span><h2>Дератизация, дезинфекция, коммерческие объекты</h2><p>Для домов, офисов, магазинов, общепита, складов, а также для дератизации, дезинфекции и обработки от плесени цена зависит от объекта. Пришлём расчёт за 5 минут.</p></div>
+  <div class="section__head"><span class="eyebrow">Индивидуальный расчёт</span><h2>Дератизация, дезинфекция, коммерческие объекты</h2><p>Для домов, офисов, магазинов, общепита, складов, а также для дератизации, дезинфекции и обработки от плесени цена зависит от объекта. Рассчитаем стоимость по вашей заявке.</p></div>
   <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(240px,1fr))">${SERVICES.filter((s) => s.slug !== 'dezinsekciya').map((s) => `<a class="pest" href="/${s.slug}/" style="align-items:flex-start;text-align:left">${icon(s.icon)}<span>${s.name}</span><small>по запросу</small></a>`).join('')}</div>
-  <div style="margin-top:22px;display:flex;flex-wrap:wrap;gap:12px"><a class="btn btn--lime" href="${L.esc(C.max)}" target="_blank" rel="noopener" data-goal="max_click">${icon('max')} Рассчитать в MAX</a><button type="button" class="btn btn--ghost" data-open-modal>Вызвать специалиста</button></div>
-  <div class="callout" style="margin-top:22px"><p><b>Как получить расчёт за 5 минут.</b> Напишите в MAX три вещи: местонахождение, метраж и вид насекомого или грызуна. Мы пришлём стоимость и предложим время выезда.</p></div>
+  <div style="margin-top:22px;display:flex;flex-wrap:wrap;gap:12px"><a class="btn btn--lime" href="#zayavka">${icon('clipboard')} Оставить заявку на расчёт</a><button type="button" class="btn btn--ghost" data-open-modal>Вызвать специалиста</button></div>
+  <div class="callout" style="margin-top:22px"><p><b>Как получить расчёт.</b> Оставьте заявку в форме ниже и укажите три вещи: местонахождение, метраж и вид насекомого или грызуна. Мы рассчитаем стоимость и предложим время выезда.</p></div>
 </div></section>
 ${L.formSection({ alt: true })}`;
-  return { path: '/ceny/', title: 'Цены на дезинсекцию в Самаре — от @@PRICE_FROM@@ ₽ | SANITAR', description: 'Цены на обработку квартир от @@PRICE_FROM@@ ₽ и участков от @@PRICE_LAND@@ ₽ за сотку в Самаре. Групповые скидки для соседей и ТСЖ. Расчёт за 5 минут.', body, ld: [L.ldBreadcrumbs(items)] };
+  return { path: '/ceny/', title: 'Цены на дезинсекцию в Самаре — от @@PRICE_FROM@@ ₽ | SANITAR', description: 'Цены на обработку квартир от @@PRICE_FROM@@ ₽ и участков от @@PRICE_LAND@@ ₽ за сотку в Самаре. Групповые скидки для соседей и ТСЖ. Расчёт по заявке.', body, ld: [L.ldBreadcrumbs(items)] };
 }
 
 export function dokumenty(C) {
@@ -64,14 +64,12 @@ export function kontakty(C) {
   const map = C.address
     ? `<a class="btn btn--ghost" href="https://yandex.ru/maps/?text=${encodeURIComponent(C.city + ', ' + C.address)}" target="_blank" rel="noopener">${icon('pin')} Открыть на Яндекс Картах</a>`
     : `<p>Карта: ${L.val('КАРТА_АДРЕС', '')}</p>`;
-  const body = `${hero('Контакты ДЕЗЦЕНТР SANITAR', 'Позвоните или напишите: рассчитаем стоимость за 5 минут и согласуем время выезда.', items)}
+  const body = `${hero('Контакты ДЕЗЦЕНТР SANITAR', 'Оставьте заявку в форме или позвоните: рассчитаем стоимость и согласуем время выезда.', items)}
 <section class="section"><div class="container two-col">
   <div>
     <div class="contact-card">
       ${L.phoneLink(p[0], '', `${icon('phone')}<span>${L.esc(p[0].display)}<small>Позвонить</small></span>`)}
       ${L.phoneLink(p[1], '', `${icon('phone')}<span>${L.esc(p[1].display)}<small>Позвонить</small></span>`)}
-      <a href="${L.esc(C.max)}" target="_blank" rel="noopener" data-goal="max_click">${icon('max')}<span>MAX<small>Расчёт за 5 минут</small></span></a>
-      <a href="${L.esc(C.telegram)}" target="_blank" rel="noopener" data-goal="telegram_click">${icon('telegram')}<span>Telegram-канал<small>t.me/obrabotkanasekomye</small></span></a>
     </div>
     <div class="prose" style="margin-top:24px">
       <p><b>Адрес:</b> ${L.val('АДРЕС', C.address)}</p>
@@ -83,7 +81,7 @@ export function kontakty(C) {
   </div>
   <div>${L.leadForm({ variant: 'full' })}</div>
 </div></section>`;
-  return { path: '/kontakty/', title: 'Контакты ДЕЗЦЕНТР SANITAR — Самара | Телефоны, MAX', description: `Телефоны ${C.phones[0].display} и ${C.phones[1].display}, MAX и Telegram. Вызов специалиста по дезинсекции и дератизации в Самаре и области.`, body, ld: [L.ldBreadcrumbs(items)] };
+  return { path: '/kontakty/', title: 'Контакты ДЕЗЦЕНТР SANITAR — Самара | Телефоны, заявка', description: `Телефоны ${C.phones[0].display} и ${C.phones[1].display} и форма заявки. Вызов специалиста по дезинсекции и дератизации в Самаре и области.`, body, ld: [L.ldBreadcrumbs(items)] };
 }
 
 export function politika(C) {

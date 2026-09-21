@@ -62,10 +62,10 @@ export function home(C) {
   <p class="price-note">Цены в рублях. Итоговая стоимость зависит от метража, вида насекомых и места обработки. Действует система скидок от объёма.</p>
   <div class="price-extra">
     <div class="price-card reveal">${icon('sprout')}<div><b>от ${PRICE.land} ₽ за сотку</b><span>Комплексная обработка участка: клещи, комары, садовые вредители. Минимальный выезд. Дополнительно: муравьи, мухи, осы.</span></div></div>
-    <div class="price-card reveal">${icon('max')}<div><b>Расчёт за 5 минут</b><span>Напишите в MAX: местонахождение, метраж и вид насекомого. Дератизация, дезинфекция и фунгицидная обработка рассчитываются индивидуально.</span></div></div>
+    <div class="price-card reveal">${icon('clipboard')}<div><b>Расчёт по заявке</b><span>Оставьте заявку: укажите местонахождение, метраж и вид насекомого. Дератизация, дезинфекция и фунгицидная обработка рассчитываются индивидуально.</span></div></div>
   </div>
   <div style="margin-top:20px;display:flex;flex-wrap:wrap;gap:12px">
-    <a class="btn btn--lime" href="${L.esc(C.max)}" target="_blank" rel="noopener" data-goal="max_click">${icon('max')} Рассчитать в MAX</a>
+    <a class="btn btn--lime" href="#zayavka">${icon('clipboard')} Оставить заявку на расчёт</a>
     <a class="btn btn--ghost" href="/ceny/">Все цены</a>
   </div>
 </div></section>
@@ -76,9 +76,24 @@ export function home(C) {
 </div></section>
 
 <section class="section" id="raboty"><div class="container">
-  <div class="section__head reveal"><span class="eyebrow">Видео работ</span><h2>Так выглядит обработка</h2><p>Реальные объекты: квартиры, помещения организаций, участки. Видео запускается по нажатию, без звука.</p></div>
+  <div class="section__head reveal"><span class="eyebrow">Видео работ</span><h2>Так выглядит обработка</h2><p>Реальные объекты: квартиры, помещения организаций, участки. Нажмите на ролик, чтобы посмотреть его крупно, и листайте остальные стрелками.</p></div>
   <div class="chips gal-filter" role="group" aria-label="Фильтр видео">${chips}</div>
   <div class="grid gallery">${vids}</div>
+  <dialog id="video-modal" class="vdlg" aria-label="Просмотр видео">
+    <div class="vmodal">
+      <div class="vmodal__bar">
+        <span class="vmodal__cap" aria-live="polite"></span>
+        <span class="vmodal__count" aria-hidden="true"></span>
+        <button type="button" class="icon-btn" data-close aria-label="Закрыть видео">${icon('close')}</button>
+      </div>
+      <div class="vmodal__stage">
+        <video controls muted loop playsinline preload="auto"></video>
+        <button type="button" class="vnav vnav--prev" aria-label="Предыдущее видео">${icon('arrow')}</button>
+        <button type="button" class="vnav vnav--next" aria-label="Следующее видео">${icon('arrow')}</button>
+      </div>
+      <p class="vmodal__hint">Стрелки ← → на клавиатуре или свайп переключают видео</p>
+    </div>
+  </dialog>
 </div></section>
 
 <section class="section section--alt" id="metody"><div class="container">
