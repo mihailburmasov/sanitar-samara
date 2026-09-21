@@ -14,8 +14,6 @@ export const ICONS = {
   mail: '<rect x="3" y="7" width="26" height="18" rx="3"/><path d="m4 9 12 9 12-9"/>',
   menu: '<path d="M5 9h22M5 16h22M5 23h22"/>',
   close: '<path d="M7 7l18 18M25 7 7 25"/>',
-  sun: '<circle cx="16" cy="16" r="6"/><path d="M16 3v3M16 26v3M3 16h3M26 16h3M7 7l2 2M23 23l2 2M25 7l-2 2M9 23l-2 2"/>',
-  moon: '<path d="M26 19A11 11 0 0 1 13 6a11 11 0 1 0 13 13z"/>',
   play: '<path d="M10 6v20l17-10z"/>',
   arrow: '<path d="M5 16h21M19 9l7 7-7 7"/>',
   doc: '<path d="M8 3h11l6 6v20H8zM19 3v6h6M12 15h9M12 20h9M12 25h6"/>',

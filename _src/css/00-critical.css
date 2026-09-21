@@ -12,14 +12,7 @@
   --radius:16px;--radius-sm:10px;--header-h:64px;
   color-scheme:light;
 }
-/* Светлая тема — по умолчанию всегда. Тёмная включается только кнопкой в шапке (не по настройкам системы). */
-:root[data-theme="dark"]{
-  --bg:#07122A;--bg2:#0A1935;--surface:#0F2148;--text:#EAF0FB;--muted:#A9B8D6;--line:#22386A;
-  --accent:#7FB0FF;--link:#8DB9FF;--ok:#7ED37F;--warn-bg:#5B4B00;--green:#8FE08F;
-  --hero-a:#0D2453;--hero-b:#07122A;--footer:#050D20;--footer-text:#B9C8E6;
-  --shadow:0 8px 28px rgba(0,0,0,.45);--shadow-sm:0 2px 10px rgba(0,0,0,.4);
-  color-scheme:dark;
-}
+/* Тема сайта только светлая: переключателя и тёмной темы нет, настройки системы игнорируются. */
 
 *,*::before,*::after{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:calc(var(--header-h) + 12px)}
@@ -62,7 +55,6 @@ ul,ol{margin:0 0 1em;padding-left:1.25em}
 .logo__t{display:flex;flex-direction:column;line-height:1;font-weight:900;text-transform:uppercase}
 .logo__t small{font-size:.66rem;letter-spacing:.14em;color:var(--green);font-weight:850}
 .logo__t b{font-size:1.28rem;letter-spacing:.02em;color:var(--accent);font-weight:900}
-:root[data-theme="dark"] .logo__t small{color:#8FE08F}
 .nav{display:none}
 .nav a{color:var(--text);text-decoration:none;font-weight:650;padding:.5em .7em;border-radius:10px;white-space:nowrap}
 .nav a:hover,.nav a[aria-current="page"]{background:var(--bg2);color:var(--accent)}
@@ -71,9 +63,6 @@ ul,ol{margin:0 0 1em;padding-left:1.25em}
 .icon-btn{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:12px;border:1px solid var(--line);background:var(--surface);color:var(--text);cursor:pointer}
 .icon-btn:hover{background:var(--bg2)}
 .icon-btn .ico{width:22px;height:22px}
-.theme-toggle .i-sun{display:none}
-:root[data-theme="dark"] .theme-toggle .i-sun{display:block}
-:root[data-theme="dark"] .theme-toggle .i-moon{display:none}
 .header__cta{display:none}
 @media (min-width:640px){.header__phone{display:inline-flex}}
 @media (min-width:1080px){

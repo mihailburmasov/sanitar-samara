@@ -56,7 +56,6 @@ export function header(current) {
     </nav>
     ${phoneLink(p, 'header__phone', `${icon('phone')}<span>${esc(p.display)}</span>`)}
     <button type="button" class="btn btn--lime btn--sm header__cta" data-open-modal>Вызвать специалиста</button>
-    <button type="button" class="icon-btn theme-toggle" aria-label="Переключить тёмную и светлую тему" data-theme-toggle>${icon('moon', 'i-moon')}${icon('sun', 'i-sun')}</button>
     <button type="button" class="icon-btn burger" aria-label="Открыть меню" aria-expanded="false" aria-controls="mnav" data-burger>${icon('menu')}</button>
   </div>
   <nav class="mnav" id="mnav" aria-label="Мобильное меню" hidden>
@@ -134,7 +133,7 @@ export function modals() {
 export function cookieBanner() {
   const text = C.metrikaId
     ? 'Сайт использует файлы cookie для работы и Яндекс.Метрику (статистика и вебвизор). Продолжая, вы соглашаетесь с этим.'
-    : 'Сайт использует файлы cookie для корректной работы и сохранения выбранной темы оформления.';
+    : 'Сайт использует файлы cookie для корректной работы.';
   return `<div class="cookie" id="cookie" role="region" aria-label="Уведомление о cookie" hidden>
   <p>${text} <a href="/politika-konfidencialnosti/#cookie-policy">Подробнее</a></p>
   <button type="button" class="btn btn--blue btn--sm" data-cookie-ok>Понятно</button>
@@ -305,7 +304,7 @@ ${noindex || C.noindex ? '<meta name="robots" content="noindex,follow">' : ''}
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="preload" href="/fonts/golos-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
 ${preload || heroPreload(path)}
-<script>(function(){try{var t=localStorage.getItem('theme-v2');if(t==='dark')document.documentElement.setAttribute('data-theme','dark')}catch(e){}document.documentElement.className+=' js'})()</script>
+<script>document.documentElement.className+=' js'</script>
 <style>${CRITICAL}</style>
 <link rel="stylesheet" href="/styles.css" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="/styles.css"></noscript>
