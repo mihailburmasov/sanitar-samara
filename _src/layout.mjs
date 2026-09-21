@@ -305,7 +305,7 @@ ${noindex || C.noindex ? '<meta name="robots" content="noindex,follow">' : ''}
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="preload" href="/fonts/golos-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
 ${preload || heroPreload(path)}
-<script>(function(){try{var t=localStorage.getItem('theme');if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t)}catch(e){}document.documentElement.className+=' js'})()</script>
+<script>(function(){try{var t=localStorage.getItem('theme-v2');if(t==='dark')document.documentElement.setAttribute('data-theme','dark')}catch(e){}document.documentElement.className+=' js'})()</script>
 <style>${CRITICAL}</style>
 <link rel="stylesheet" href="/styles.css" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="/styles.css"></noscript>

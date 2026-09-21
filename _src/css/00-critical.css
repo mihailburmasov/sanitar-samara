@@ -12,15 +12,7 @@
   --radius:16px;--radius-sm:10px;--header-h:64px;
   color-scheme:light;
 }
-@media (prefers-color-scheme:dark){
-  :root:not([data-theme="light"]){
-    --bg:#07122A;--bg2:#0A1935;--surface:#0F2148;--text:#EAF0FB;--muted:#A9B8D6;--line:#22386A;
-    --accent:#7FB0FF;--link:#8DB9FF;--ok:#7ED37F;--warn-bg:#5B4B00;--green:#8FE08F;
-    --hero-a:#0D2453;--hero-b:#07122A;--footer:#050D20;--footer-text:#B9C8E6;
-    --shadow:0 8px 28px rgba(0,0,0,.45);--shadow-sm:0 2px 10px rgba(0,0,0,.4);
-    color-scheme:dark;
-  }
-}
+/* Светлая тема — по умолчанию всегда. Тёмная включается только кнопкой в шапке (не по настройкам системы). */
 :root[data-theme="dark"]{
   --bg:#07122A;--bg2:#0A1935;--surface:#0F2148;--text:#EAF0FB;--muted:#A9B8D6;--line:#22386A;
   --accent:#7FB0FF;--link:#8DB9FF;--ok:#7ED37F;--warn-bg:#5B4B00;--green:#8FE08F;
@@ -82,7 +74,6 @@ ul,ol{margin:0 0 1em;padding-left:1.25em}
 .theme-toggle .i-sun{display:none}
 :root[data-theme="dark"] .theme-toggle .i-sun{display:block}
 :root[data-theme="dark"] .theme-toggle .i-moon{display:none}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .theme-toggle .i-sun{display:block}:root:not([data-theme="light"]) .theme-toggle .i-moon{display:none}}
 .header__cta{display:none}
 @media (min-width:640px){.header__phone{display:inline-flex}}
 @media (min-width:1080px){
