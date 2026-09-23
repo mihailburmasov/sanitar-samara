@@ -90,7 +90,7 @@ export function footer() {
         <p>${phoneLink(p[0], '', esc(p[0].display))}<br>${phoneLink(p[1], '', esc(p[1].display))}</p>
         <p>Адрес: ${val('АДРЕС', C.address)}</p>
         <p>Режим работы: ${val('ЧАСЫ_РАБОТЫ', C.hours)}</p>
-        <p>E-mail: ${val('EMAIL', C.email)}</p>
+        <p>E-mail: ${C.email ? `<a href="mailto:${esc(C.email)}">${esc(C.email)}</a>` : val('EMAIL', C.email)}</p>
       </div>
     </div>
     <div class="footer__bottom">
@@ -254,6 +254,7 @@ export function ldLocalBusiness() {
   };
   if (C.address) o.address.streetAddress = C.address.replace(/^г. [^,]+, /, '');
   if (C.hours) o.openingHours = 'Mo-Su 09:00-20:00';
+  if (C.geo) o.geo = { '@type': 'GeoCoordinates', latitude: C.geo.lat, longitude: C.geo.lon };
   if (C.email) o.email = C.email;
   return o;
 }

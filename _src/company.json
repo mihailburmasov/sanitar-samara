@@ -13,8 +13,9 @@
   "telegram": "https://t.me/obrabotkanasekomye",
   "max": "https://max.ru/join/VizEzPhCOBhcnVbOm-s2utUMwQV6fIl8NmV13puQeJ4",
   "yandexReviewsUrl": "",
-  "email": "",
+  "email": "olimp@samara-7.ru",
   "address": "г. Самара, проспект Кирова, д. 5, офис 5",
+  "geo": { "lat": 53.194517, "lon": 50.294742 },
   "hours": "понедельник — воскресенье с 9:00 до 20:00",
   "legal": {
     "name": "",
