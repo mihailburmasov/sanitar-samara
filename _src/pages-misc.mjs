@@ -62,7 +62,7 @@ export function kontakty(C) {
   const items = crumb('Контакты', '/kontakty/');
   const p = C.phones;
   const map = C.address
-    ? `<a class="btn btn--ghost" href="https://yandex.ru/maps/?text=${encodeURIComponent(C.city + ', ' + C.address)}" target="_blank" rel="noopener">${icon('pin')} Открыть на Яндекс Картах</a>`
+    ? `<a class="btn btn--ghost" href="https://yandex.ru/maps/?text=${encodeURIComponent(C.address)}" target="_blank" rel="noopener">${icon('pin')} Открыть на Яндекс Картах</a>`
     : `<p>Карта: ${L.val('КАРТА_АДРЕС', '')}</p>`;
   const body = `${hero('Контакты ДЕЗЦЕНТР SANITAR', 'Оставьте заявку в форме или позвоните: рассчитаем стоимость и согласуем время выезда.', items)}
 <section class="section"><div class="container two-col">
@@ -76,6 +76,7 @@ export function kontakty(C) {
       <p><b>Режим работы:</b> ${L.val('ЧАСЫ_РАБОТЫ', C.hours)}</p>
       <p><b>E-mail:</b> ${L.val('EMAIL', C.email)}</p>
       <p><b>Территория работы:</b> Самара и Самарская область.</p>
+      <p><b>Мы в мессенджерах:</b> <a href="${L.esc(C.telegram)}" target="_blank" rel="noopener" data-goal="telegram_click">Telegram-канал</a>, <a href="${L.esc(C.max)}" target="_blank" rel="noopener" data-goal="max_click">группа в MAX</a></p>
     </div>
     <div class="map-box">${map}</div>
   </div>

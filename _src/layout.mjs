@@ -252,7 +252,8 @@ export function ldLocalBusiness() {
     address: { '@type': 'PostalAddress', addressLocality: C.city, addressRegion: C.region, addressCountry: 'RU' },
     sameAs: [C.telegram, C.max]
   };
-  if (C.address) o.address.streetAddress = C.address;
+  if (C.address) o.address.streetAddress = C.address.replace(/^г. [^,]+, /, '');
+  if (C.hours) o.openingHours = 'Mo-Su 09:00-20:00';
   if (C.email) o.email = C.email;
   return o;
 }
