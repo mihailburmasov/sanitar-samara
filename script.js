@@ -25,17 +25,6 @@
     window.ym(Number(CFG.ym), 'init', { clickmap: true, trackLinks: true, accurateTrackBounce: true, webvisor: true });
   }
 
-  /* ---- Тема ---- */
-  var root = document.documentElement;
-  $$('[data-theme-toggle]').forEach(function (b) {
-    b.addEventListener('click', function () {
-      /* по умолчанию всегда светлая тема; тёмная — только по нажатию на кнопку */
-      var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-      root.setAttribute('data-theme', next);
-      store.set('theme-v2', next);
-    });
-  });
-
   /* ---- Мобильное меню ---- */
   var burger = $('[data-burger]'), mnav = $('#mnav');
   if (burger && mnav) {
