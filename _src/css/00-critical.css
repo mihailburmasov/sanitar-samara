@@ -62,7 +62,9 @@ ul,ol{margin:0 0 1em;padding-left:1.25em}
 .icon-btn:hover{background:var(--bg2)}
 .icon-btn .ico{width:22px;height:22px}
 .header__cta{display:none}
-@media (min-width:640px){.header__phone{display:inline-flex}}
+.header__soc{display:none;flex:none;text-decoration:none}
+.header__soc--max{font-weight:900;font-size:.8rem;letter-spacing:.02em}
+@media (min-width:640px){.header__phone,.header__soc{display:inline-flex}}
 @media (min-width:1080px){
   .nav{display:flex;gap:2px}
   .header__cta{display:inline-flex}

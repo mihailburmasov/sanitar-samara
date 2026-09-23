@@ -52,6 +52,8 @@ export function header(current) {
       ${links}
     </nav>
     ${phoneLink(p, 'header__phone', `${icon('phone')}<span>${esc(p.display)}</span>`)}
+    <a class="icon-btn header__soc header__soc--max" href="${esc(C.max)}" target="_blank" rel="noopener" aria-label="Группа в MAX" title="Группа в MAX" data-goal="max_click">MAX</a>
+    <a class="icon-btn header__soc" href="${esc(C.telegram)}" target="_blank" rel="noopener" aria-label="Telegram-канал" title="Telegram-канал" data-goal="telegram_click">${icon('telegram')}</a>
     <button type="button" class="btn btn--lime btn--sm header__cta" data-open-modal>Вызвать специалиста</button>
     <button type="button" class="icon-btn burger" aria-label="Открыть меню" aria-expanded="false" aria-controls="mnav" data-burger>${icon('menu')}</button>
   </div>
