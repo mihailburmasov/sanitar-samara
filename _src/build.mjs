@@ -77,7 +77,7 @@ fs.writeFileSync(path.join(OUT, 'robots.txt'), C.noindex ? 'User-agent: *\nDisal
 /* ---------- Статика для отдельной папки вывода (превью) ---------- */
 if (OUT !== ROOT) {
   for (const d of ['fonts', 'images', 'video']) fs.cpSync(path.join(ROOT, d), path.join(OUT, d), { recursive: true });
-  for (const f of ['favicon.svg', 'apple-touch-icon.png']) fs.copyFileSync(path.join(ROOT, f), path.join(OUT, f));
+  for (const f of ['favicon.png', 'apple-touch-icon.png']) fs.copyFileSync(path.join(ROOT, f), path.join(OUT, f));
   fs.writeFileSync(path.join(OUT, '.nojekyll'), '');
 }
 

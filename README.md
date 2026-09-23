@@ -21,7 +21,7 @@
 ## 2. Как выложить на хостинг
 
 1. Заполните домен (шаг 3) и пересоберите сайт.
-2. Залейте в корень сайта (`public_html`) всё, **кроме папки `_src`**: `index.html`, папки страниц, `api/`, `fonts/`, `images/`, `video/`, `styles.css`, `script.js`, `.htaccess`, `robots.txt`, `sitemap.xml`, `404.html`, `favicon.svg`, `apple-touch-icon.png`.
+2. Залейте в корень сайта (`public_html`) всё, **кроме папки `_src`**: `index.html`, папки страниц, `api/`, `fonts/`, `images/`, `video/`, `styles.css`, `script.js`, `.htaccess`, `robots.txt`, `sitemap.xml`, `404.html`, `favicon.png`, `apple-touch-icon.png`.
 3. Подключите SSL-сертификат и раскомментируйте блок «HTTPS» в `.htaccess`.
 4. Настройте форму (шаг 4) и отправьте тестовую заявку.
 5. Добавьте сайт в Яндекс Вебмастер и Яндекс Бизнес, отправьте `sitemap.xml`.

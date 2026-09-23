@@ -265,8 +265,8 @@ html:has(dialog[open]){overflow:hidden}
 .footer__grid{display:grid;gap:28px}
 @media (min-width:800px){.footer__grid{grid-template-columns:1.3fr 1fr 1fr 1.2fr}}
 .footer ul{list-style:none;padding:0;margin:0;display:grid;gap:8px}
-.footer .logo__t b{color:#fff}
-.footer .logo__t small{color:#9CE29C}
+.logo--footer{display:inline-flex;background:#fff;border-radius:var(--radius-sm);padding:10px 14px}
+.logo--footer img{height:56px}
 .footer p{margin:0 0 .6em;font-size:.95rem}
 .footer__soc{margin:14px 0 0!important}
 .footer__bottom{margin-top:30px;padding-top:18px;border-top:1px solid rgba(255,255,255,.16);display:flex;flex-wrap:wrap;gap:8px 22px;justify-content:space-between;font-size:.88rem}

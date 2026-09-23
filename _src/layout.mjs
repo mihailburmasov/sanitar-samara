@@ -27,11 +27,8 @@ export function phoneLink(p, cls = '', inner) {
 }
 
 /* ---------- Логотип ---------- */
-export function logoMark() {
-  return `<svg viewBox="0 0 48 48" aria-hidden="true" focusable="false"><path d="M40 12A19 19 0 1 0 43 27" fill="none" stroke="#1F4FBF" stroke-width="5" stroke-linecap="round"/><path d="M14 33C14 20 22 13 36 12c0 13-7 21-19 21z" fill="#2E9B2E"/><path d="M15 32 28 19" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/></svg>`;
-}
 export function logo(cls = '') {
-  return `<a class="logo ${cls}" href="/" title="На главную">${logoMark()}<span class="logo__t"><small>ДЕЗЦЕНТР</small> <b>SANITAR</b></span></a>`;
+  return `<a class="logo ${cls}" href="/" title="На главную"><img src="/images/logo.webp" width="480" height="194" alt="ДЕЗЦЕНТР SANITAR"></a>`;
 }
 
 /* ---------- Шапка ---------- */
@@ -302,7 +299,7 @@ ${noindex || C.noindex ? '<meta name="robots" content="noindex,follow">' : ''}
 <meta name="twitter:title" content="${esc(title)}">
 <meta name="twitter:description" content="${esc(description)}">
 <meta name="twitter:image" content="${img}">
-<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.png" type="image/png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="preload" href="/fonts/golos-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
 ${preload || heroPreload(path)}

@@ -51,10 +51,8 @@ ul,ol{margin:0 0 1em;padding-left:1.25em}
 .header{position:sticky;top:0;z-index:100;background:color-mix(in srgb,var(--surface) 92%,transparent);backdrop-filter:saturate(1.4) blur(10px);-webkit-backdrop-filter:saturate(1.4) blur(10px);border-bottom:1px solid var(--line)}
 .header__in{display:flex;align-items:center;gap:12px;height:var(--header-h)}
 .logo{display:flex;align-items:center;gap:8px;text-decoration:none;color:inherit;margin-right:auto}
-.logo svg{width:40px;height:40px}
-.logo__t{display:flex;flex-direction:column;line-height:1;font-weight:900;text-transform:uppercase}
-.logo__t small{font-size:.66rem;letter-spacing:.14em;color:var(--green);font-weight:850}
-.logo__t b{font-size:1.28rem;letter-spacing:.02em;color:var(--accent);font-weight:900}
+.logo img{display:block;height:48px;width:auto}
+@media (max-width:420px){.logo img{height:40px}}
 .nav{display:none}
 .nav a{color:var(--text);text-decoration:none;font-weight:650;padding:.5em .7em;border-radius:10px;white-space:nowrap}
 .nav a:hover,.nav a[aria-current="page"]{background:var(--bg2);color:var(--accent)}
