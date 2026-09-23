@@ -24,20 +24,23 @@ export const HERO_ART = {
   '/404.html': ['fog-fence', 'center']
 };
 
-// На главной фон занимает всю ширину экрана, на внутренних — правые 72%
+// На главной фон занимает всю ширину экрана, на внутренних — правые 72%.
+// На телефоне (до 767px) — отдельный вертикальный файл -m, иначе широкая картинка растягивается в 4–5 раз.
+const MOBILE = '(max-width:767px)', DESKTOP = '(min-width:768px)';
 const sizesFor = (path) => (path === '/' ? '100vw' : '(min-width:920px) 72vw, 100vw');
 const art = (path) => {
   const [name, pos] = HERO_ART[path] || HERO_ART['/'];
   const d = heroDims[name];
-  return { name, pos, d, src: `/images/hero/${name}.webp`, srcM: `/images/hero/${name}-m.webp`, mw: d.mw || 800, sizes: sizesFor(path) };
+  const base = `/images/hero/${name}`;
+  return { pos, d, src: `${base}.webp`, srcM: `${base}-m.webp`, srcset: `${base}-1200.webp 1200w, ${base}.webp ${d.w}w`, sizes: sizesFor(path) };
 };
 
 export function heroBg(path) {
   const a = art(path);
-  return `<div class="hero__bg" aria-hidden="true"><img src="${a.src}" srcset="${a.srcM} ${a.mw}w, ${a.src} ${a.d.w}w" sizes="${a.sizes}" width="${a.d.w}" height="${a.d.h}" alt="" fetchpriority="high" decoding="async" style="object-position:${a.pos}"></div>`;
+  return `<div class="hero__bg" aria-hidden="true"><picture><source media="${MOBILE}" srcset="${a.srcM}" width="${a.d.mw}" height="${a.d.mh}"><img src="${a.src}" srcset="${a.srcset}" sizes="${a.sizes}" width="${a.d.w}" height="${a.d.h}" alt="" fetchpriority="high" decoding="async" style="object-position:${a.pos}"></picture></div>`;
 }
 
 export function heroPreload(path) {
   const a = art(path);
-  return `<link rel="preload" as="image" href="${a.src}" imagesrcset="${a.srcM} ${a.mw}w, ${a.src} ${a.d.w}w" imagesizes="${a.sizes}" fetchpriority="high">`;
+  return `<link rel="preload" as="image" href="${a.srcM}" media="${MOBILE}" fetchpriority="high"><link rel="preload" as="image" href="${a.src}" imagesrcset="${a.srcset}" imagesizes="${a.sizes}" media="${DESKTOP}" fetchpriority="high">`;
 }
