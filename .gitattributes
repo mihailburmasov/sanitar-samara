@@ -1,0 +1,9 @@
+data/** text eol=lf
+app/** text eol=lf
+public/**/*.php text eol=lf
+public/.htaccess text eol=lf
+*.webp binary
+*.png binary
+*.jpg binary
+*.mp4 binary
+*.woff2 binary

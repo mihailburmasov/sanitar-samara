@@ -1,0 +1,47 @@
+{
+  "servicesOrder": [
+    "dezinsekciya",
+    "deratizaciya",
+    "dezinfekciya",
+    "fungicidnaya-obrabotka",
+    "unichtozhenie-tarakanov",
+    "unichtozhenie-klopov",
+    "unichtozhenie-krys-i-myshey",
+    "obrabotka-ot-kleshchey",
+    "obrabotka-ot-pleseni"
+  ],
+  "hero": {
+    "home": {
+      "art": "worker-spray",
+      "pos": "center"
+    },
+    "ceny": {
+      "art": "yard-shed",
+      "pos": "75% center"
+    },
+    "dokumenty": {
+      "art": "fog-lawn",
+      "pos": "center"
+    },
+    "otzyvy": {
+      "art": "family-pets",
+      "pos": "center 45%"
+    },
+    "kontakty": {
+      "art": "city-window",
+      "pos": "85% center"
+    },
+    "politika": {
+      "art": "autumn-road",
+      "pos": "58% center"
+    },
+    "notFound": {
+      "art": "fog-fence",
+      "pos": "center"
+    }
+  },
+  "photoCats": {
+    "raboty": "Фото работ",
+    "dokumenty": "Документы"
+  }
+}

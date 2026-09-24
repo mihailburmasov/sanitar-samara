@@ -1,0 +1,51 @@
+{
+  "brand": "ДЕЗЦЕНТР SANITAR",
+  "slug": "sanitar-samara",
+  "city": "Самара",
+  "region": "Самарская область",
+  "phones": [
+    {
+      "display": "8 927 260-73-67",
+      "tel": "+79272607367"
+    },
+    {
+      "display": "8 917 107-93-84",
+      "tel": "+79171079384"
+    }
+  ],
+  "telegram": "https://t.me/obrabotkanasekomye",
+  "max": "https://max.ru/join/VizEzPhCOBhcnVbOm-s2utUMwQV6fIl8NmV13puQeJ4",
+  "yandexReviewsUrl": "",
+  "email": "olimp@samara-7.ru",
+  "address": "г. Самара, проспект Кирова, д. 5, офис 5",
+  "geo": {
+    "lat": 53.194517,
+    "lon": 50.294742
+  },
+  "hours": "понедельник — воскресенье с 9:00 до 20:00",
+  "legal": {
+    "name": "",
+    "inn": "",
+    "ogrn": ""
+  },
+  "rating": {
+    "value": "5,0",
+    "count": 100,
+    "asOf": "март 2026"
+  },
+  "cities": [
+    "Самара",
+    "Тольятти",
+    "Сызрань",
+    "Новокуйбышевск",
+    "Чапаевск",
+    "Кинель",
+    "Отрадный",
+    "Жигулёвск",
+    "Похвистнево",
+    "Безенчук"
+  ],
+  "metrikaId": "",
+  "ogImage": "/images/og.jpg",
+  "legalDate": "2026-09-24"
+}

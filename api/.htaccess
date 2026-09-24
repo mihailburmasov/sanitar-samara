@@ -1,7 +1,0 @@
-# Закрываем конфиг с паролями от прямого доступа
-<Files "config.php">
-    Require all denied
-</Files>
-<Files "config.example.php">
-    Require all denied
-</Files>

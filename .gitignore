@@ -1,8 +1,15 @@
 node_modules/
-api/config.php
+# собранный сайт (производная от data/), превью для GitHub Pages — отдельный репозиторий в dist-pages
+dist/
 dist-pages/
+# пароль админки, сессии, заявки, история правок, корзина
+storage/
+# локальные настройки и доступы
+app/config.local.php
+app/config.server.php
+app/deploy.local.php
 # внутренние заметки для работы с клиентом, в публичный репозиторий не попадают
 ВОПРОСЫ_КЛИЕНТУ.md
+HANDOFF.md
 .DS_Store
 Thumbs.db
-HANDOFF.md

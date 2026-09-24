@@ -1,8 +1,9 @@
 {
   "name": "sanitar-site",
   "private": true,
-  "description": "Статический сайт ДЕЗЦЕНТР SANITAR. Сборка: npm run build",
+  "description": "Сайт ДЕЗЦЕНТР SANITAR. Сборка: php app/bin/build.php (PHP 8.1+). Node нужен только для tools/make-art.cjs.",
   "scripts": {
-    "build": "node _src/build.mjs"
+    "build": "php app/bin/build.php",
+    "dev": "php -S 127.0.0.1:8080 app/dev-router.php"
   }
 }
