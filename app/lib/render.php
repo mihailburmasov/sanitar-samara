@@ -409,6 +409,8 @@ function ld_local_business(): array
     if (!empty($c['hours'])) $o['openingHours'] = 'Mo-Su 09:00-20:00';
     if (!empty($c['geo'])) $o['geo'] = ['@type' => 'GeoCoordinates', 'latitude' => $c['geo']['lat'], 'longitude' => $c['geo']['lon']];
     if (!empty($c['email'])) $o['email'] = $c['email'];
+    if (!empty($c['legal']['name'])) $o['legalName'] = $c['legal']['name'];
+    if (!empty($c['legal']['inn'])) $o['taxID'] = $c['legal']['inn'];
     return $o;
 }
 function ld_faq(array $items): array
