@@ -63,7 +63,7 @@ ul,ol{margin:0 0 1em;padding-left:1.25em}
 .icon-btn .ico{width:22px;height:22px}
 .header__cta{display:none}
 .header__soc{display:none;flex:none;text-decoration:none}
-.header__soc--max{font-weight:900;font-size:.8rem;letter-spacing:.02em}
+.header__soc--max{font-weight:500;font-size:.85rem;letter-spacing:.04em}
 @media (min-width:640px){.header__phone,.header__soc{display:inline-flex}}
 @media (min-width:1080px){
   .nav{display:flex;gap:2px}
