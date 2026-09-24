@@ -228,7 +228,7 @@ function site_footer(): string
       </div>
     </div>
     <div class="footer__bottom">
-      <span>© ' . date('Y') . ' ' . val('ЮР_НАЗВАНИЕ', $c['legal']['name']) . '. ИНН ' . val('ИНН', $c['legal']['inn']) . ', ОГРН ' . val('ОГРН', $c['legal']['ogrn']) . '</span>
+      <span>© ' . date('Y') . ' Дезцентр SANITAR</span>
       <span class="footer__bottom-links">
         <a href="/politika-konfidencialnosti/">Политика конфиденциальности</a>
         <a href="/politika-konfidencialnosti/#soglasie">Согласие на обработку данных</a>
