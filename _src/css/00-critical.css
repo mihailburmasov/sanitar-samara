@@ -97,6 +97,7 @@ ul,ol{margin:0 0 1em;padding-left:1.25em}
   .hero{padding:56px 0 72px}
   .hero__cta .btn{flex:0 1 auto}
   .hero__bg img{width:72%}
+  .hero__bg--fade img{-webkit-mask-image:linear-gradient(180deg,transparent 0,transparent 10%,#000 33%,#000 67%,transparent 90%);mask-image:linear-gradient(180deg,transparent 0,transparent 10%,#000 33%,#000 67%,transparent 90%)}
   .hero::after,.page-hero::after{background:linear-gradient(90deg,#071A48 0%,#071A48 27%,rgba(7,26,72,.88) 42%,rgba(7,26,72,.38) 68%,rgba(7,26,72,.1) 100%),linear-gradient(0deg,#071A48 0,transparent 20%)}
 }
 

@@ -6,7 +6,7 @@ export const heroDims = JSON.parse(fs.readFileSync(new URL('./hero.json', import
 
 // путь страницы → [картинка, object-position]. Позиция важна на телефоне, где виден узкий участок кадра.
 export const HERO_ART = {
-  '/': ['worker-house', 'center'],
+  '/': ['worker-spray', 'center'],
   '/dezinsekciya/': ['interior-house', '68% center'],
   '/deratizaciya/': ['rats', 'center'],
   '/dezinfekciya/': ['room-fog', 'center'],
@@ -35,9 +35,15 @@ const art = (path) => {
   return { pos, d, src: `${base}.webp`, srcM: `${base}-m.webp`, srcset: `${base}-1200.webp 1200w, ${base}.webp ${d.w}w`, sizes: sizesFor(path) };
 };
 
-export function heroBg(path) {
+// картинки-полосы (make-art.cjs, mode: 'strip'): верх и низ уже растворены в фон
+const STRIP = new Set(['room-fog', 'tree-spray', 'rats']);
+
+// fade — затенить верх и низ картинки, как у полос (страницы услуг)
+export function heroBg(path, fade = false) {
   const a = art(path);
-  return `<div class="hero__bg" aria-hidden="true"><picture><source media="${MOBILE}" srcset="${a.srcM}" width="${a.d.mw}" height="${a.d.mh}"><img src="${a.src}" srcset="${a.srcset}" sizes="${a.sizes}" width="${a.d.w}" height="${a.d.h}" alt="" fetchpriority="high" decoding="async" style="object-position:${a.pos}"></picture></div>`;
+  const [name] = HERO_ART[path] || HERO_ART['/'];
+  const cls = fade && !STRIP.has(name) ? ' hero__bg--fade' : '';
+  return `<div class="hero__bg${cls}" aria-hidden="true"><picture><source media="${MOBILE}" srcset="${a.srcM}" width="${a.d.mw}" height="${a.d.mh}"><img src="${a.src}" srcset="${a.srcset}" sizes="${a.sizes}" width="${a.d.w}" height="${a.d.h}" alt="" fetchpriority="high" decoding="async" style="object-position:${a.pos}"></picture></div>`;
 }
 
 export function heroPreload(path) {

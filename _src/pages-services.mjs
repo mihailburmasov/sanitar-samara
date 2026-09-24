@@ -18,7 +18,7 @@ function svcPage(C, d) {
   const crumbItems = [{ name: 'Главная', href: '/' }, ...(d.parent ? [d.parent] : []), { name: d.crumb, href: d.path }];
   const body = `
 <section class="page-hero on-dark">
-${L.heroBg(d.path)}<div class="container">
+${L.heroBg(d.path, true)}<div class="container">
   ${L.crumbs(crumbItems, true)}
   <h1>${d.h1}</h1>
   <p class="lead">${d.lead}</p>

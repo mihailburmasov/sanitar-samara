@@ -41,7 +41,7 @@ const VID = {
 // mx — где брать вертикальный вырез по горизонтали (0…1);  ai:false — не увеличивать нейросетью (туман выходит пятнами)
 const ART = {
   // главная: фон во весь экран (16:9, крупнее остальных)
-  'worker-house': { cover: ['C', 0, 420, 690, 370], mode: 'cover', size: [2400, 1350], msize: [810, 1440], mx: 0.3 },
+  'worker-spray': { photo: COVERS + 'Новая.png', mode: 'cover', size: [2400, 1350], msize: [810, 1440], mx: 0.35 },
   'room-fog': { cover: ['G', 0, 640, 700, 225], mode: 'strip', mx: 0.35 },
   'tree-spray': { cover: ['A', 520, 640, 504, 165], mode: 'strip', mx: 0.5 },
   rats: { cover: ['K', 240, 805, 700, 160], mode: 'strip', mx: 0.55 },
