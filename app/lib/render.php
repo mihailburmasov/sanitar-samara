@@ -187,7 +187,7 @@ function site_header(string $current): string
     </nav>
     ' . phone_link($p, 'header__phone', icon('phone') . '<span>' . esc($p['display']) . '</span>') . '
     <a class="icon-btn header__soc header__soc--max" href="' . esc($c['max']) . '" target="_blank" rel="noopener" aria-label="Группа в MAX" title="Группа в MAX" data-goal="max_click">MAX</a>
-    <a class="icon-btn header__soc" href="' . esc($c['telegram']) . '" target="_blank" rel="noopener" aria-label="Telegram-канал" title="Telegram-канал" data-goal="telegram_click">' . icon('telegram') . '</a>
+    <a class="icon-btn header__soc" href="' . esc($c['telegramChat'] ?? $c['telegram']) . '" target="_blank" rel="noopener" aria-label="Написать в Telegram" title="Написать в Telegram" data-goal="telegram_click">' . icon('telegram') . '</a>
     <button type="button" class="btn btn--lime btn--sm header__cta" data-open-modal>Вызвать специалиста</button>
     <button type="button" class="icon-btn burger" aria-label="Открыть меню" aria-expanded="false" aria-controls="mnav" data-burger>' . icon('menu') . '</button>
   </div>
