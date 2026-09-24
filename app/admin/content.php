@@ -64,6 +64,10 @@ function clean_value(array $fd, $v)
                 $s = clean_text($v, ['type' => 'text'] + $fd);
                 if ($s !== '' && !preg_match('~^https?://[^\s"<>]+$~i', $s)) throw new InvalidArgumentException('ссылка должна начинаться с https://');
                 return $s;
+            case 'link':
+                $s = clean_text($v, ['type' => 'text'] + $fd);
+                if ($s !== '' && !preg_match('~^(/[^\s"<>]*|#[\w-]+|https?://[^\s"<>]+)$~u', $s)) throw new InvalidArgumentException('адрес должен начинаться с / (страница сайта), # (место на странице) или https://');
+                return $s;
             case 'email':
                 $s = clean_text($v, ['type' => 'text'] + $fd);
                 if ($s !== '' && !filter_var($s, FILTER_VALIDATE_EMAIL)) throw new InvalidArgumentException('неверный адрес почты');

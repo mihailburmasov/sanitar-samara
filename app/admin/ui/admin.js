@@ -1,4 +1,4 @@
-/* Админка СТРОЙГРАД: разделы, формы по описанию полей с сервера, медиатека, заявки, история, корзина. */
+/* Админка SANITAR: разделы, формы по описанию полей с сервера, медиатека, заявки, история, корзина. */
 (function () {
   'use strict';
   var A = window.ADMIN;
@@ -494,12 +494,12 @@
       }
       draw();
       view().innerHTML = '';
-      view().appendChild(h('div', {}, h('p', { class: 'lead-p', text: 'Порядок услуг здесь — это порядок в меню, каталоге и подвале сайта. Стрелки меняют его сразу.' }), rows));
+      view().appendChild(h('div', {}, h('p', { class: 'lead-p', text: 'Порядок услуг здесь — это порядок в меню, на главной и в подвале сайта (для услуг с галочкой «Показывать в меню»). Стрелки меняют его сразу.' }), rows));
     });
   };
 
   function createService() {
-    promptBox('Новая услуга', 'Название услуги', 'Например: Демонтажные работы. Страница создастся скрытой — заполните её и включите.', 'Создать').then(function (title) {
+    promptBox('Новая услуга', 'Название услуги', 'Например: Уничтожение муравьёв. Страница создастся скрытой — заполните её и включите.', 'Создать').then(function (title) {
       if (!title) return;
       api('service/create', { body: { title: title } }).then(function (j) { toast(j.message); return refreshBoot().then(function () { location.hash = '#/service/' + j.slug; }); }).catch(function (e) { toast(e.message, 'err'); });
     });
@@ -536,7 +536,7 @@
     return loadPhotos().then(function () {
       var cat = catByKey(catKey) ? catKey : PHOTOS.cats[0].key;
       setTitle('Фото', [h('button', { class: 'btn btn--sm', type: 'button', text: '+ Новая папка', onclick: function () {
-        promptBox('Новая папка для фото', 'Название папки', 'Например: Демонтаж', 'Создать').then(function (label) {
+        promptBox('Новая папка для фото', 'Название папки', 'Например: Участки', 'Создать').then(function (label) {
           if (!label) return;
           api('photo/category', { body: { label: label } }).then(function (j) { toast(j.message); skipHash = true; location.hash = '#/photos/' + j.key; routes.photos(j.key); }).catch(function (e) { toast(e.message, 'err'); });
         });

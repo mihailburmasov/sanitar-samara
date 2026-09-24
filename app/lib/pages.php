@@ -24,8 +24,6 @@ function validate_data(): void
     foreach (S::$site['common']['docs'] as $d) photo($d['photo']);
     $pub = rtrim((string)cfg('public_dir'), '/\\');
     foreach (S::$videos['items'] as $v) if (!is_file("$pub/video/work-{$v['id']}.mp4")) throw new RuntimeException("Нет видео work-{$v['id']}.mp4");
-    $names = array_column(S::$reviews, 'name');
-    foreach (S::$site['home']['reviews'] as $n) if (!in_array($n, $names, true)) throw new RuntimeException("На главной указан отзыв «{$n}», но такого автора нет в отзывах");
 }
 
 function docs_grid(bool $reveal): string
@@ -64,7 +62,9 @@ function page_home(): array
     $chips = join_map(S::$videos['cats'], fn($c) => '<button type="button" class="chip" data-filter="' . esc($c['id']) . '" aria-pressed="' . ($c['id'] === 'all' ? 'true' : 'false') . '">' . t($c['label']) . '</button>');
     $vids = join_map(S::$videos['items'], fn($v) => vid_tile($v));
     $byName = array_column(S::$reviews, null, 'name');
-    $homeReviews = array_map(fn($n) => $byName[$n], $h['reviews']);
+    // отзыв переименовали или удалили — на главной его просто нет (сборка предупредит)
+    foreach ($h['reviews'] as $n) if (!isset($byName[$n])) Build::$warnings[] = "/: на главной указан отзыв «{$n}», но такого автора нет в отзывах";
+    $homeReviews = array_values(array_map(fn($n) => $byName[$n], array_filter($h['reviews'], fn($n) => isset($byName[$n]))));
     $cities = join_map($C['cities'], fn($c) => '<li class="chip">' . icon('pin') . t($c) . '</li>');
     $facts = join_map($h['facts'], fn($f) => '
     <li>' . icon($f['icon']) . '<span>' . t($f['t']) . '<small>' . t($f['s']) . '</small></span></li>');

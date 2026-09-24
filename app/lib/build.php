@@ -49,6 +49,7 @@ function rebase_html(string $html): string
 function render_site(): array
 {
     load_site_data();
+    Build::$pages = []; Build::$warnings = [];
     validate_data();
     $css = css_build();
     S::$critical = $css['critical'];
@@ -60,7 +61,6 @@ function render_site(): array
     array_push($pages, page_ceny(), page_dokumenty(), page_otzyvy(), page_kontakty(), page_politika(), page_not_found());
 
     $files = ['styles.css' => $css['full']];
-    Build::$pages = []; Build::$warnings = [];
     foreach ($pages as $p) {
         $html = rebase_html(shell($p));
         $files[page_file($p['path'])] = $html;

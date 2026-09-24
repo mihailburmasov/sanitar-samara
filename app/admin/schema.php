@@ -54,7 +54,7 @@ function admin_sections(): array
         head('С какими вредителями работаем'),
         f('text', $h . 'pestsTitle', 'Заголовок'),
         f('textarea', $h . 'pestsText', 'Текст под заголовком', '', ['rows' => 2]),
-        f('items', $h . 'pests', 'Плитки', 'Ссылка — адрес страницы, например /unichtozhenie-tarakanov/ или /dezinsekciya/#pests', ['item' => [k('icon', 'icon', 'Иконка'), k('text', 'name', 'Название'), k('text', 'href', 'Ссылка')], 'itemName' => 'Плитка']),
+        f('items', $h . 'pests', 'Плитки', 'Ссылка — адрес страницы, например /unichtozhenie-tarakanov/ или /dezinsekciya/#pests', ['item' => [k('icon', 'icon', 'Иконка'), k('text', 'name', 'Название'), k('link', 'href', 'Ссылка')], 'itemName' => 'Плитка']),
         head('Цены', 'Сама таблица цен — в разделе «Цены»'),
         f('text', $h . 'priceTitle', 'Заголовок'),
         f('textarea', $h . 'priceText', 'Текст под заголовком', '', ['rows' => 2]),
@@ -249,7 +249,7 @@ function service_fields(): array
         f('list', $s . 'reviewTags', 'Метки отзывов', 'Сначала показываются отзывы с этими метками (метки — в разделе «Отзывы»)'),
         f('items', $s . 'faq', 'Частые вопросы', 'Рекомендуется 3–5 вопросов', ['item' => faq_item(), 'itemName' => 'Вопрос']),
         head('Смотрите также'),
-        f('items', $s . 'related', 'Ссылки', 'Ссылки на скрытые и удалённые услуги не показываются', ['item' => [k('text', 'href', 'Адрес', 'Например: /ceny/'), k('text', 'label', 'Текст ссылки')], 'itemName' => 'Ссылка']),
+        f('items', $s . 'related', 'Ссылки', 'Ссылки на скрытые и удалённые услуги не показываются', ['item' => [k('link', 'href', 'Адрес', 'Например: /ceny/'), k('text', 'label', 'Текст ссылки')], 'itemName' => 'Ссылка']),
     ], meta_fields($s));
 }
 
