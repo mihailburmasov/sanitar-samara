@@ -245,4 +245,16 @@
     });
   }
   $$('form[data-lead]').forEach(initForm);
+
+  /* ---- кнопка «Редактировать» для того, кто вошёл в админку (метка sg_adm ставится при входе, сама доступа не даёт) ---- */
+  var editTo = document.body.getAttribute('data-edit');
+  if (editTo && /(^|;\s*)sg_adm=1/.test(document.cookie)) {
+    var eb = document.createElement('a');
+    eb.href = (CFG.base || '') + '/admin/#/' + editTo;
+    eb.textContent = '✎ Редактировать страницу';
+    eb.setAttribute('style', 'position:fixed;left:16px;bottom:16px;z-index:90;padding:10px 16px;border-radius:10px;background:#0A2A6E;color:#fff;font:600 14px/1.2 system-ui,sans-serif;text-decoration:none;box-shadow:0 6px 20px rgba(0,0,0,.3);border:1px solid #A6CE39');
+    document.body.appendChild(eb);
+    var mb = $('.bar');
+    if (mb && getComputedStyle(mb).display !== 'none') eb.style.bottom = (mb.offsetHeight + 12) + 'px'; /* над мобильной панелью «Позвонить» */
+  }
 })();
