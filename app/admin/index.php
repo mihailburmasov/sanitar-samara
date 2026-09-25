@@ -191,7 +191,6 @@ function api(string $action, string $method, array $in): array
 
         case 'GET settings':
             $s = settings_get();
-            if ($s['tgToken'] !== '') $s['tgToken'] = '••••••';
             $acc = admin_account();
             return ['settings' => $s, 'secretUrl' => S::$siteUrl . S::$base . '/admin/' . $acc['secret'], 'companyEmail' => doc_get('company.json')['email'] ?? ''];
         case 'POST settings':

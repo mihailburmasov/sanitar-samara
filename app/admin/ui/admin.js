@@ -637,29 +637,24 @@
       setTitle('Настройки');
       var s = d.settings;
       var emails = F.list({ label: 'Почта для заявок', hint: 'Пусто — заявки уходят на почту из раздела «Компания и контакты»: ' + d.companyEmail }, s.leadEmails, function () {});
-      var token = textControl({ type: 'text' }, s.tgToken, function () {});
-      var chats = F.list({ label: 'Кому в Telegram (Chat ID)', hint: 'Число: личный чат или группа. Узнать свой ID можно у бота @userinfobot. Боту нужно сначала написать /start.' }, s.tgChats, function () {});
       var from = textControl({ type: 'text' }, s.mailFrom, function () {});
       var cur = h('input', { type: 'password', class: 'inp', autocomplete: 'current-password' });
       var nw = h('input', { type: 'password', class: 'inp', autocomplete: 'new-password' });
       view().innerHTML = '';
       add(view(), [
         h('div', { class: 'form' },
-          h('div', { class: 'form-head' }, h('h2', { text: 'Куда приходят заявки' }), h('p', { text: 'Каждая заявка с сайта сохраняется в разделе «Заявки» и дополнительно отправляется сюда.' })),
+          h('div', { class: 'form-head' }, h('h2', { text: 'Куда приходят заявки' }), h('p', { text: 'Каждая заявка с сайта сохраняется в разделе «Заявки» и дополнительно отправляется на эту почту.' })),
           emails.el,
-          wrapFld({ label: 'Токен Telegram-бота', hint: 'Создайте бота у @BotFather и вставьте токен. Пусто — в Telegram не отправлять.' }, token.el),
-          chats.el,
           wrapFld({ label: 'Адрес отправителя писем', hint: 'Необязательно. Лучше указать ящик на домене сайта, иначе письма могут попадать в спам.' }, from.el),
           h('div', { style: 'display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px' },
             h('button', { class: 'btn btn--primary', type: 'button', text: 'Сохранить', onclick: function () {
-              api('settings', { body: { leadEmails: emails.get(), tgToken: token.get(), tgChats: chats.get(), mailFrom: from.get() } }).then(function (j) { toast(j.message); }).catch(function (e) { toast(e.message, 'err'); });
+              api('settings', { body: { leadEmails: emails.get(), mailFrom: from.get() } }).then(function (j) { toast(j.message); }).catch(function (e) { toast(e.message, 'err'); });
             } }),
             h('button', { class: 'btn', type: 'button', text: 'Отправить проверочную заявку', onclick: function () {
               api('settings/test-lead', { body: {} }).then(function (j) {
                 var r = j.result || {}, parts = [];
                 if ('mail' in r) parts.push('почта: ' + (r.mail ? 'отправлено' : 'не отправилось'));
-                if (r.tg) Object.keys(r.tg).forEach(function (k) { parts.push('Telegram ' + k + ': ' + (r.tg[k] ? 'доставлено' : 'ошибка')); });
-                toast(parts.length ? parts.join(', ') : 'Некуда отправлять: не указаны почта и Telegram', parts.join().indexOf('ошибка') >= 0 || parts.join().indexOf('не отправ') >= 0 ? 'err' : null);
+                toast(parts.length ? parts.join(', ') : 'Некуда отправлять: не указана почта', parts.join().indexOf('ошибка') >= 0 || parts.join().indexOf('не отправ') >= 0 ? 'err' : null);
               }).catch(function (e) { toast(e.message, 'err'); });
             } }))),
         h('div', { class: 'form', style: 'margin-top:18px' },

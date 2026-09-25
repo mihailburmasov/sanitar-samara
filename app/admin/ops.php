@@ -388,18 +388,13 @@ function settings_get(): array
 {
     $f = storage_path('settings.json');
     $s = is_file($f) ? read_json($f) : [];
-    return $s + ['leadEmails' => [], 'tgToken' => '', 'tgChats' => [], 'mailFrom' => ''];
+    return $s + ['leadEmails' => [], 'mailFrom' => ''];
 }
 function settings_save(array $v): void
 {
     $emails = array_values(array_filter(array_map('trim', (array)($v['leadEmails'] ?? []))));
     foreach ($emails as $e) if (!filter_var($e, FILTER_VALIDATE_EMAIL)) throw new InvalidArgumentException("Неверный адрес почты: $e");
-    $chats = array_values(array_filter(array_map('trim', (array)($v['tgChats'] ?? []))));
-    foreach ($chats as $c) if (!preg_match('~^-?\d{3,20}$~', $c)) throw new InvalidArgumentException("Chat ID — это число, например 123456789 или -1001234567890");
-    $token = trim((string)($v['tgToken'] ?? ''));
-    if ($token === '••••••') $token = settings_get()['tgToken'];
-    if ($token !== '' && !preg_match('~^\d{5,15}:[A-Za-z0-9_-]{30,}$~', $token)) throw new InvalidArgumentException('Токен бота выглядит неверно');
     $from = trim((string)($v['mailFrom'] ?? ''));
     if ($from !== '' && !filter_var($from, FILTER_VALIDATE_EMAIL)) throw new InvalidArgumentException('Неверный адрес отправителя');
-    write_file_atomic(storage_path('settings.json'), json_pretty(['leadEmails' => $emails, 'tgToken' => $token, 'tgChats' => $chats, 'mailFrom' => $from]));
+    write_file_atomic(storage_path('settings.json'), json_pretty(['leadEmails' => $emails, 'mailFrom' => $from]));
 }
