@@ -43,4 +43,12 @@ const em=await sharp(await sharp(cut).extract({left:580,top:0,width:195,height:1
 const icon=async(sz,pad,file)=>{const inner=Math.round(sz*(1-2*pad));const r=await sharp(em).resize(inner,inner,{fit:'contain',background:{r:0,g:0,b:0,alpha:0}}).png().toBuffer();
  await sharp({create:{width:sz,height:sz,channels:4,background:'#ffffff'}}).composite([{input:r,gravity:'center'}]).png().toFile(file);};
 await icon(180,.1,OUT+'/apple-touch-icon.png');await icon(48,.04,OUT+'/favicon.png');
+// превью ссылки в мессенджерах — та же эмблема, 600×600. Родной размер эмблемы ~170 px,
+// поэтому увеличиваем Real-ESRGAN (D:/tmp/realesrgan), без него — обычным ресайзом
+const fs=require('fs'),os=require('os'),{execFileSync}=require('child_process');
+const ESR='D:/tmp/realesrgan/realesrgan-ncnn-vulkan.exe',tmp=os.tmpdir()+'/sanitar-og-';
+await icon(200,.12,tmp+'1.png');
+let big=tmp+'1.png';
+if(fs.existsSync(ESR)){execFileSync(ESR,['-i',tmp+'1.png','-o',tmp+'4.png','-n','realesrgan-x4plus','-s','4'],{cwd:'D:/tmp/realesrgan',stdio:'ignore'});big=tmp+'4.png';}
+await sharp(big).flatten({background:'#ffffff'}).resize(600,600).png({compressionLevel:9}).toFile(OUT+'/images/og-icon.png');
 })();

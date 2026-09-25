@@ -488,7 +488,8 @@ function shell(array $pg): string
     $c = S::$company;
     $pth = $pg['path'];
     $canonical = url($pth === '/404.html' ? '/' : $pth);
-    $img = site() . ($pg['ogImage'] ?? $c['ogImage']);
+    // превью ссылки в мессенджерах — эмблема из фавикона (делает tools/logo.js)
+    $img = site() . ($pg['ogImage'] ?? '/images/og-icon.png');
     $lds = implode("\n", array_map(fn($o) => '<script type="application/ld+json">' . json_ld($o) . '</script>', $pg['ld'] ?? []));
     $cfg = json_encode(['ym' => $c['metrikaId'] ?? '', 'endpoint' => S::$base . FORM_ENDPOINT, 'base' => S::$base,'tel' => phone1()['display'], 'telHref' => phone1()['tel']], JSON_FLAGS | JSON_HEX_TAG);
     $title = esc($pg['title']); $desc = esc($pg['description']);
@@ -509,9 +510,9 @@ function shell(array $pg): string
 <meta property="og:description" content="' . $desc . '">
 <meta property="og:url" content="' . $canonical . '">
 <meta property="og:image" content="' . $img . '">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta name="twitter:card" content="summary_large_image">
+<meta property="og:image:width" content="600">
+<meta property="og:image:height" content="600">
+<meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="' . $title . '">
 <meta name="twitter:description" content="' . $desc . '">
 <meta name="twitter:image" content="' . $img . '">
