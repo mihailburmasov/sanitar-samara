@@ -390,7 +390,7 @@ function page_kontakty(): array
       <p><b>Режим работы:</b> ' . val('ЧАСЫ_РАБОТЫ', $C['hours']) . '</p>
       <p><b>E-mail:</b> ' . $email . '</p>
       <p><b>Территория работы:</b> Самара и Самарская область.</p>
-      <p><b>Мы в мессенджерах:</b> <a href="' . esc($C['telegram']) . '" target="_blank" rel="noopener" data-goal="telegram_click">Telegram-канал</a>, <a href="' . esc($C['max']) . '" target="_blank" rel="noopener" data-goal="max_click">группа в MAX</a></p>
+      <p><b>Мы в мессенджерах:</b> <a href="' . esc($C['telegram']) . '" target="_blank" rel="noopener" data-goal="telegram_click">Telegram-канал</a>, <a href="' . esc($C['max']) . '" target="_blank" rel="noopener" data-goal="max_click">Группа в MAX</a></p>
     </div>
     <div class="map-box">' . $map . '</div>
   </div>
