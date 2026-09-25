@@ -474,15 +474,6 @@ function asset_ver(string $p): string
     return $cache[$p] ??= is_file($f) ? substr(md5_file($f), 0, 10) : '0';
 }
 
-// Раздел админки, где правится страница (для кнопки «Редактировать» у вошедшего в админку)
-function edit_route(string $pth): string
-{
-    static $map = ['/' => 'section/home', '/ceny/' => 'section/ceny', '/dokumenty/' => 'section/dokumenty', '/otzyvy/' => 'section/otzyvy', '/kontakty/' => 'section/kontakty', '/politika-konfidencialnosti/' => 'section/company'];
-    if (isset($map[$pth])) return $map[$pth];
-    if (preg_match('~^/([a-z0-9-]+)/$~', $pth, $m) && isset(S::$svcBySlug[$m[1]])) return 'service/' . $m[1];
-    return '';
-}
-
 function shell(array $pg): string
 {
     $c = S::$company;
@@ -526,7 +517,7 @@ function shell(array $pg): string
 <noscript><link rel="stylesheet" href="/styles.css?v=' . S::$cssVer . '"></noscript>
 ' . $lds . '
 </head>
-<body' . (($e = edit_route($pth)) !== '' ? ' data-edit="' . $e . '"' : '') . '>
+<body>
 ' . sprite_svg() . '
 ' . site_header($pth) . '
 <main id="main">
