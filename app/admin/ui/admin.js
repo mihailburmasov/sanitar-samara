@@ -645,7 +645,7 @@
         h('div', { class: 'form' },
           h('div', { class: 'form-head' }, h('h2', { text: 'Куда приходят заявки' }), h('p', { text: 'Каждая заявка с сайта сохраняется в разделе «Заявки» и дополнительно отправляется на эту почту.' })),
           emails.el,
-          wrapFld({ label: 'Адрес отправителя писем', hint: 'Необязательно. Лучше указать ящик на домене сайта, иначе письма могут попадать в спам.' }, from.el),
+          wrapFld({ label: 'Адрес отправителя писем', hint: 'Необязательно. Если на сервере подключён ящик сайта, письма идут от него и это поле не используется.' }, from.el),
           h('div', { style: 'display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px' },
             h('button', { class: 'btn btn--primary', type: 'button', text: 'Сохранить', onclick: function () {
               api('settings', { body: { leadEmails: emails.get(), mailFrom: from.get() } }).then(function (j) { toast(j.message); }).catch(function (e) { toast(e.message, 'err'); });
@@ -653,7 +653,8 @@
             h('button', { class: 'btn', type: 'button', text: 'Отправить проверочную заявку', onclick: function () {
               api('settings/test-lead', { body: {} }).then(function (j) {
                 var r = j.result || {}, parts = [];
-                if ('mail' in r) parts.push('почта: ' + (r.mail ? 'отправлено' : 'не отправилось'));
+                if ('smtp' in r) parts.push('почта (ящик сайта): ' + (r.smtp === true ? 'отправлено' : 'не отправилось — ' + r.smtp));
+                if ('mail' in r) parts.push('почта' + ('smtp' in r ? ' (запасной путь)' : '') + ': ' + (r.mail ? 'отправлено' : 'не отправилось'));
                 toast(parts.length ? parts.join(', ') : 'Некуда отправлять: не указана почта', parts.join().indexOf('ошибка') >= 0 || parts.join().indexOf('не отправ') >= 0 ? 'err' : null);
               }).catch(function (e) { toast(e.message, 'err'); });
             } }))),
