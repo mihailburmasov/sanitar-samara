@@ -117,7 +117,7 @@ function admin_sections(): array
         f('text', $d . 'orgTitle', 'Заголовок 1'),
         f('textarea', $d . 'orgText', 'Текст 1', '', ['rows' => 3]),
         f('text', $d . 'companyTitle', 'Заголовок 2'),
-        f('textarea', $d . 'licenseNote', 'Лицензии и разрешения компании', 'Пусто — на сайте жёлтая пометка «заполнить»', ['rows' => 2]),
+        f('textarea', $d . 'licenseNote', 'Лицензии и разрешения компании', 'Пусто — «Заголовок 2» и этот текст на сайте не показываются', ['rows' => 2]),
     ], meta_fields($d))];
 
     $o = 'site.json#otzyvy.';

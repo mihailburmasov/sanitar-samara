@@ -339,9 +339,9 @@ function page_dokumenty(): array
   <div class="prose" style="margin-top:30px">
     <h2>' . t($h['orgTitle']) . '</h2>
     <p>' . t($h['orgText']) . '</p>
-    <h2>' . t($h['companyTitle']) . '</h2>
-    <p>Лицензии и разрешения компании: ' . val('СКАН_ЛИЦЕНЗИИ_КОМПАНИИ', $h['licenseNote'] ?? '') . '</p>
-  </div>
+' . (!empty($h['licenseNote']) ? '    <h2>' . t($h['companyTitle']) . '</h2>
+    <p>Лицензии и разрешения компании: ' . esc($h['licenseNote']) . '</p>
+' : '') . '  </div>
 </div></section>
 ' . form_section(['alt' => true]);
     return ['path' => '/dokumenty/', 'title' => $h['metaTitle'], 'description' => $h['metaDescription'], 'body' => $body, 'hero' => hero_spec('dokumenty'), 'ld' => [ld_breadcrumbs($items)]];
