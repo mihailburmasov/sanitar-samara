@@ -79,6 +79,7 @@ function render_site(): array
     $files['robots.txt'] = S::$noindex ? "User-agent: *\nDisallow: /\n" : "User-agent: *\nAllow: /\n\nSitemap: " . url('/sitemap.xml') . "\n";
     if (S::$siteUrl === '') S::$placeholders['ДОМЕН'] = true;
     if (empty(S::$company['metrikaId'])) S::$placeholders['YM_ID (необязательно, Метрика выключена)'] = true;
+    elseif (S::$noindex) Build::$warnings[] = 'Метрика не подключена: сборка закрыта от поисковиков (NOINDEX=1) — визиты в счётчик клиента не идут';
     return $files;
 }
 

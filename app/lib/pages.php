@@ -411,7 +411,7 @@ function page_politika(): array
 {
     $C = S::$company;
     $items = crumb_items('Политика конфиденциальности', '/politika-konfidencialnosti/');
-    $ym = !empty($C['metrikaId']);
+    $ym = metrika_id() !== '';
     $ogrnLabel = str_starts_with((string)$C['legal']['name'], 'ИП ') ? 'ОГРНИП' : 'ОГРН'; // у индивидуального предпринимателя — ОГРНИП
     $op = val('ЮР_НАЗВАНИЕ', $C['legal']['name']) . ' (ИНН ' . val('ИНН', $C['legal']['inn']) . ', ' . $ogrnLabel . ' ' . val('ОГРН', $C['legal']['ogrn']) . '), адрес: ' . val('АДРЕС', $C['address']);
     $mail = val('EMAIL', $C['email'] ?? '');

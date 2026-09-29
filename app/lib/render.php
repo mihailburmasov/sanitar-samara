@@ -265,9 +265,17 @@ function modals(): string
 </dialog>';
 }
 
+// Номер счётчика Яндекс.Метрики, если он работает в этой сборке.
+// В превью и локальных проверках (NOINDEX=1) счётчик не подключаем, чтобы тестовые
+// визиты не попадали в статистику клиента. На боевом сайте noindex выключен — там всё как было.
+function metrika_id(): string
+{
+    return S::$noindex ? '' : (string)(S::$company['metrikaId'] ?? '');
+}
+
 function cookie_banner(): string
 {
-    $text = !empty(S::$company['metrikaId'])
+    $text = metrika_id() !== ''
         ? 'Сайт использует файлы cookie для работы и Яндекс.Метрику (статистика и вебвизор). Продолжая, вы соглашаетесь с этим.'
         : 'Сайт использует файлы cookie для корректной работы.';
     return '<div class="cookie" id="cookie" role="region" aria-label="Уведомление о cookie" hidden>
@@ -482,7 +490,7 @@ function shell(array $pg): string
     // превью ссылки в мессенджерах — эмблема из фавикона (делает tools/logo.js)
     $img = site() . ($pg['ogImage'] ?? '/images/og-icon.png');
     $lds = implode("\n", array_map(fn($o) => '<script type="application/ld+json">' . json_ld($o) . '</script>', $pg['ld'] ?? []));
-    $cfg = json_encode(['ym' => $c['metrikaId'] ?? '', 'endpoint' => S::$base . FORM_ENDPOINT, 'base' => S::$base,'tel' => phone1()['display'], 'telHref' => phone1()['tel']], JSON_FLAGS | JSON_HEX_TAG);
+    $cfg = json_encode(['ym' => metrika_id(), 'endpoint' => S::$base . FORM_ENDPOINT, 'base' => S::$base,'tel' => phone1()['display'], 'telHref' => phone1()['tel']], JSON_FLAGS | JSON_HEX_TAG);
     $title = esc($pg['title']); $desc = esc($pg['description']);
     $html = '<!doctype html>
 <html lang="ru">
