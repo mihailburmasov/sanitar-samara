@@ -71,7 +71,10 @@ function ftp_open(array $D)
 function remote_path(array $D, string $key): string
 {
     $root = trim($D['root'], '/');
-    $key = str_starts_with($key, '@docroot/') ? trim($D['docroot'], '/') . '/' . substr($key, 9) : $key;
+    if (str_starts_with($key, '@docroot/')) {
+        $dr = trim($D['docroot'], '/');
+        $key = ($dr !== '' ? $dr . '/' : '') . substr($key, 9);
+    }
     return ($root !== '' ? '/' . $root : '') . '/' . $key;
 }
 function ftp_mkdirs($c, string $dir): void

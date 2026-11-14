@@ -5,10 +5,10 @@ ErrorDocument 404 /404.html
 
 <IfModule mod_rewrite.c>
   RewriteEngine On
-  # https — включить (убрать # в трёх строках ниже), когда на домене будет SSL-сертификат
-  # RewriteCond %{HTTPS} off
-  # RewriteCond %{HTTP:X-Forwarded-Proto} !https
-  # RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+  # всё на https
+  RewriteCond %{HTTPS} off
+  RewriteCond %{HTTP:X-Forwarded-Proto} !https
+  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
   # адрес без www
   RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
   RewriteRule ^ https://%1%{REQUEST_URI} [L,R=301]
@@ -16,6 +16,9 @@ ErrorDocument 404 /404.html
   RewriteCond %{REQUEST_URI} !^/admin/index\.php$
   RewriteRule ^admin(/.*)?$ admin/index.php [L,QSA]
 </IfModule>
+
+# ядро и данные не отдаются (на Timeweb app лежит внутри корня сайта)
+RedirectMatch 404 ^/(app|data|storage)(/|$)
 
 # служебные файлы (.git, .env и т.п.) не отдаются
 <FilesMatch "^\.">
